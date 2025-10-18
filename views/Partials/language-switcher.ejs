@@ -1,0 +1,27 @@
+<!-- Переключатель языков -->
+<div class="language-switcher">
+    <button class="lang-toggle" aria-label="<%= __('site.switch_language') %>" aria-haspopup="true">
+        <i class="fas fa-globe"></i>
+        <span class="current-lang">
+            <% if (locale === 'ru') { %>РУ<% } %>
+            <% if (locale === 'inh') { %>ГӀА<% } %>
+            <% if (locale === 'en') { %>EN<% } %>
+        </span>
+        <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="lang-dropdown" role="menu">
+        <% locales.forEach(function(lang) { %>
+            <% if (lang !== locale) { %>
+                <a href="?lang=<%= lang %>" class="lang-option" role="menuitem">
+                    <% if (lang === 'ru') { %>
+                        <span class="lang-flag">🇷🇺</span> Русский
+                    <% } else if (lang === 'inh') { %>
+                        <span class="lang-flag">⚪</span> ГӀалгӀай
+                    <% } else if (lang === 'en') { %>
+                        <span class="lang-flag">🇬🇧</span> English
+                    <% } %>
+                </a>
+            <% } %>
+        <% }); %>
+    </div>
+</div>

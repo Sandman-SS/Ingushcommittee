@@ -1,0 +1,37 @@
+<!-- SEO Meta Tags -->
+<meta name="description" content="<%= typeof description !== 'undefined' ? description : 'Официальный сайт Комитета Ингушской Независимости. Сохранение и развитие культурного наследия ингушского народа, защита его интересов и прав.' %>">
+<meta name="keywords" content="<%= typeof keywords !== 'undefined' ? keywords : 'Ингушетия, комитет, независимость, культура, наследие, права, ингушский народ' %>">
+<meta name="author" content="Комитет Ингушской Независимости">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="<%= typeof canonicalUrl !== 'undefined' ? canonicalUrl : `https://ingush-committee.org${req.originalUrl}` %>">
+
+<!-- Open Graph Meta Tags -->
+<meta property="og:title" content="<%= typeof title !== 'undefined' ? title : 'Комитет Ингушской Независимости' %>">
+<meta property="og:description" content="<%= typeof description !== 'undefined' ? description : 'Официальный сайт Комитета Ингушской Независимости. Сохранение и развитие культурного наследия ингушского народа.' %>">
+<meta property="og:type" content="website">
+<meta property="og:url" content="<%= typeof canonicalUrl !== 'undefined' ? canonicalUrl : `https://ingush-committee.org${req.originalUrl}` %>">
+<meta property="og:image" content="<%= typeof ogImage !== 'undefined' ? ogImage : 'https://ingush-committee.org/IMG/logo.png' %>">
+<meta property="og:site_name" content="Комитет Ингушской Независимости">
+<meta property="og:locale" content="ru_RU">
+
+<!-- Twitter Card Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="<%= typeof title !== 'undefined' ? title : 'Комитет Ингушской Независимости' %>">
+<meta name="twitter:description" content="<%= typeof description !== 'undefined' ? description : 'Официальный сайт Комитета Ингушской Независимости.' %>">
+<meta name="twitter:image" content="<%= typeof ogImage !== 'undefined' ? ogImage : 'https://ingush-committee.org/IMG/logo.png' %>">
+
+<!-- Structured Data (JSON-LD) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Комитет Ингушской Независимости",
+  "url": "https://ingush-committee.org",
+  "logo": "https://ingush-committee.org/IMG/logo.png",
+  "description": "Организация по сохранению и развитию культурного наследия ингушского народа",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "RU"
+  }
+}
+</script>

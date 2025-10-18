@@ -1,0 +1,66 @@
+{
+  "site": {
+    "title": "Ingush Independence Committee",
+    "description": "Official website of the Ingush Independence Committee"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "about_mission": "Our Mission",
+    "about_history": "History",
+    "about_goals": "Our Goals",
+    "activities": "Activities",
+    "activities_projects": "Projects",
+    "activities_culture": "Culture",
+    "activities_education": "Education",
+    "activities_rights": "Rights Protection",
+    "activities_international": "International Cooperation",
+    "map": "Map",
+    "contact": "Contact"
+  },
+  "home": {
+    "welcome": "Welcome to the official website of the Ingush Independence Committee",
+    "subtitle": "We strive to preserve and develop the cultural heritage of the Ingush people, protect their interests and rights.",
+    "about_button": "About Committee",
+    "join_button": "Join Us",
+    "our_activities": "Our Activities",
+    "our_activities_desc": "Get acquainted with current projects and areas of activity of the committee.",
+    "learn_more": "Learn More",
+    "cooperation": "Cooperation",
+    "cooperation_desc": "You can join our activities or offer cooperation.",
+    "contact_us": "Contact Us"
+  },
+  "contact": {
+    "title": "Contacts",
+    "description": "Contact us through our official channels:",
+    "main_channel": "Main Channel of the Ingush Independence Committee",
+    "main_channel_desc": "Subscribe to our Telegram channel for current updates.",
+    "rights_dept": "Human Rights Department of the Ingush Independence Committee",
+    "youtube_channel": "YouTube Channel",
+    "youtube_desc": "Watch our videos, interviews and reports on our YouTube channel.",
+    "questions_title": "Questions and Suggestions",
+    "questions_desc": "For all questions and suggestions, you can contact us through our social networks. We try to respond as quickly as possible.",
+    "form_title": "Contact Form",
+    "form_desc": "Leave us a message and we will contact you soon.",
+    "form_name": "Your Name",
+    "form_email": "Email",
+    "form_phone": "Phone",
+    "form_subject": "Message Subject",
+    "form_message": "Message",
+    "form_submit": "Send Message",
+    "form_sending": "Sending...",
+    "go_to_telegram": "Go to Telegram",
+    "go_to_youtube": "Go to YouTube"
+  },
+  "errors": {
+    "404_title": "Page Not Found",
+    "404_message": "Sorry, the page you requested does not exist. It may have been moved or deleted. Please check the address or use navigation.",
+    "500_title": "Server Error",
+    "500_message": "An internal server error occurred. We are already working on solving the problem. Please try again later.",
+    "back_to_home": "Back to Home",
+    "report_problem": "Report Problem"
+  },
+  "footer": {
+    "copyright": "© 2025 Ingush Independence Committee"
+  }
+}

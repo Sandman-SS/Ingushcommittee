@@ -1,0 +1,31 @@
+# Robots.txt для Комитет Ингушской Независимости
+# https://ingush-committee.org
+
+# Разрешаем доступ всем поисковым роботам
+User-agent: *
+Allow: /
+
+# Блокируем доступ к служебным директориям
+Disallow: /node_modules/
+Disallow: /utils/
+Disallow: /.env
+Disallow: /.git/
+
+# Указываем расположение sitemap
+Sitemap: https://ingush-committee.org/sitemap.xml
+
+# Скорость сканирования (задержка между запросами в секундах)
+Crawl-delay: 1
+
+# Специальные правила для популярных ботов
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Yandexbot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1

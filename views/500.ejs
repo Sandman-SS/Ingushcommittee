@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>500 - Ошибка сервера</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .error-page {
+            text-align: center;
+            padding: 60px 20px;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .error-code {
+            font-size: 120px;
+            color: #d32f2f;
+            margin: 0;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .error-message {
+            font-size: 24px;
+            color: #333;
+            margin: 20px 0;
+        }
+        .error-description {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+        .error-icon {
+            font-size: 80px;
+            color: #d32f2f;
+            margin-bottom: 20px;
+        }
+        .error-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-background"></div>
+    
+    <div class="container">
+        <header class="fade-in delay-1">
+            <div class="logo">
+                <img src="/IMG/logo.png" alt="Логотип Комитета Ингушской Независимости">
+            </div>
+            <h1 class="site-title">Комитет Ингушской Независимости</h1>
+        </header>
+
+        <%- include('./partials/navigation') %>
+
+        <main class="error-page fade-in delay-2">
+            <i class="fas fa-server error-icon"></i>
+            <h1 class="error-code">500</h1>
+            <h2 class="error-message">Ошибка сервера</h2>
+            <p class="error-description">
+                Произошла внутренняя ошибка сервера. 
+                Мы уже работаем над решением проблемы. 
+                Пожалуйста, попробуйте зайти позже.
+            </p>
+            <div class="error-actions">
+                <a href="/" class="btn btn-primary">
+                    <i class="fas fa-home"></i> Вернуться на главную
+                </a>
+                <a href="/contact" class="btn btn-secondary">
+                    <i class="fas fa-envelope"></i> Сообщить о проблеме
+                </a>
+            </div>
+        </main>
+
+        <%- include('./partials/footer') %>
+    </div>
+</body>
+</html>

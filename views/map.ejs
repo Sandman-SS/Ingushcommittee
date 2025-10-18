@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интерактивная карта - Комитет Ингушской Независимости</title>
+    <meta name="description" content="Интерактивная карта земель Ингушетии с культурными и религиозными объектами">
+    <meta name="keywords" content="Ингушетия, Галгайче, культурные объекты, религиозные объекты, города и села">
+    <link rel="stylesheet" href="/styles.css">
+    <!-- Добавляем Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Подключаем Leaflet CSS и JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" 
+        crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" 
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" 
+        crossorigin=""></script>
+    <!-- Подключаем плагин для определения местоположения -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.79.0/dist/L.Control.Locate.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.79.0/dist/L.Control.Locate.min.js"></script>
+    <style>
+        #map-container {
+            width: 100%;
+            height: 600px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        #map {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+        
+        .map-title {
+            text-align: center;
+            color: darkgreen;
+            margin-bottom: 20px;
+        }
+        
+        .map-intro {
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .map-legend {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 6px;
+            padding: 15px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+            margin-right: 10px;
+        }
+        
+        .leaflet-popup-content {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .leaflet-popup-content h3 {
+            color: darkgreen;
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        
+        .popup-content {
+            max-width: 280px;
+        }
+        
+        .popup-image {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        
+        .map-controls {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 6px;
+            padding: 15px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .map-controls h3 {
+            margin-top: 0;
+            color: darkgreen;
+            margin-bottom: 15px;
+        }
+        
+        .layer-control {
+            margin-bottom: 10px;
+        }
+        
+        .control-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .map-info {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .map-info h3 {
+            color: darkgreen;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        
+        .info-tabs {
+            margin-top: 20px;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tab-button {
+            padding: 10px 15px;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-weight: bold;
+            color: #666;
+            transition: all 0.3s;
+        }
+        
+        .tab-button.active {
+            color: darkgreen;
+            border-bottom-color: darkgreen;
+        }
+        
+        .tab-button:hover {
+            color: darkgreen;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 10px 0;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .search-box {
+            margin-bottom: 15px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .map-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 3px rgba(0,0,0,0.3);
+        }
+        
+        .places-list {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #eee;
+            border-radius: 4px;
+        }
+        
+        .place-item {
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .place-item:last-child {
+            border-bottom: none;
+        }
+        
+        .place-item:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .place-name {
+            font-weight: bold;
+            color: darkgreen;
+        }
+        
+        .place-type {
+            font-size: 0.85em;
+            color: #777;
+        }
+        
+        /* Стили для мобильных устройств */
+        @media (max-width: 768px) {
+            #map-container {
+                height: 400px;
+            }
+            
+            .control-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .tab-buttons {
+                flex-wrap: wrap;
+            }
+            
+            .tab-button {
+                flex: 1;
+                padding: 8px;
+                text-align: center;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Фоновое изображение с горами -->
+    <div class="page-background"></div>
+    
+    <div class="container">
+        <header class="fade-in delay-1">
+            <div class="logo">
+                <img src="/IMG/logo.png" alt="Логотип Комитета Ингушской Независимости">
+            </div>
+            <h1 class="site-title">Комитет Ингушской Независимости</h1>
+        </header>
+        
+        <nav class="fade-in delay-2">
+            <ul>
+                <li><a href="/">Главная</a></li>
+                
+                <li class="dropdown">
+                    <a href="/about">О комитете</a>
+                    <div class="dropdown-content">
+                        <a href="/about/mission">Наша миссия</a>
+                        <a href="/about/history">История</a>
+                        <a href="/about/goals">Наши цели</a>
+                    </div>
+                </li>
+
+                <li><a href="/activities">Деятельность</a></li>
+                <li><a href="/map" class="active">Карта</a></li>
+                <li><a href="/contact">Контакты</a></li>
+            </ul>
+        </nav>
+        
+        <main>
+            <section class="content fade-in delay-3">
+                <h2 class="map-title">Интерактивная карта земель Ингушетии</h2>
+                
+                <p class="map-intro">
+                    Данная интерактивная карта представляет Республику Ингушетию. На карте отмечены традиционные населенные пункты, культурные и религиозные объекты, которые являются частью богатого наследия ингушского народа.
+                </p>
+                
+                <div id="map-container" class="fade-in delay-4">
+                    <div id="map"></div>
+                </div>
+                
+                <div class="control-group fade-in delay-4">
+                    <div class="map-controls">
+                        <h3>Управление слоями</h3>
+                        <div class="layer-control">
+                            <label>
+                                <input type="checkbox" id="layer-villages" checked> Населенные пункты
+                            </label>
+                        </div>
+                        <div class="layer-control">
+                            <label>
+                                <input type="checkbox" id="layer-cultural" checked> Культурные объекты
+                            </label>
+                        </div>
+                        <div class="layer-control">
+                            <label>
+                                <input type="checkbox" id="layer-religious" checked> Религиозные объекты
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="map-info">
+                        <h3>Информация о объектах</h3>
+                        <div class="search-box">
+                            <input type="text" class="search-input" id="place-search" placeholder="Поиск по названию...">
+                        </div>
+                        
+                        <div class="info-tabs">
+                            <div class="tab-buttons">
+                                <button class="tab-button active" data-tab="cities">Города</button>
+                                <button class="tab-button" data-tab="villages">Села</button>
+                                <button class="tab-button" data-tab="cultural">Культурные объекты</button>
+                                <button class="tab-button" data-tab="religious">Религиозные объекты</button>
+                            </div>
+                            
+                            <div class="tab-content active" id="tab-cities">
+                                <div class="places-list" id="cities-list">
+                                    <!-- Список городов будет добавлен через JavaScript -->
+                                </div>
+                            </div>
+                            
+                            <div class="tab-content" id="tab-villages">
+                                <div class="places-list" id="villages-list">
+                                    <!-- Список сел будет добавлен через JavaScript -->
+                                </div>
+                            </div>
+                            
+                            <div class="tab-content" id="tab-cultural">
+                                <div class="places-list" id="cultural-list">
+                                    <!-- Список культурных объектов будет добавлен через JavaScript -->
+                                </div>
+                            </div>
+                            
+                            <div class="tab-content" id="tab-religious">
+                                <div class="places-list" id="religious-list">
+                                    <!-- Список религиозных объектов будет добавлен через JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="map-legend fade-in delay-4">
+                    <h3>Условные обозначения</h3>
+                    <div class="legend-item">
+                        <i class="fas fa-city" style="color: darkgreen; width: 20px; margin-right: 10px;"></i>
+                        <span>Города</span>
+                    </div>
+                    <div class="legend-item">
+                        <i class="fas fa-home" style="color: darkgreen; width: 20px; margin-right: 10px;"></i>
+                        <span>Села</span>
+                    </div>
+                    <div class="legend-item">
+                        <i class="fas fa-landmark" style="color: darkblue; width: 20px; margin-right: 10px;"></i>
+                        <span>Культурные объекты</span>
+                    </div>
+                    <div class="legend-item">
+                        <i class="fas fa-mosque" style="color: green; width: 20px; margin-right: 10px;"></i>
+                        <span>Религиозные объекты</span>
+                    </div>
+                </div>
+                
+                <div class="map-info fade-in delay-4">
+                    <h3>Об интерактивной карте</h3>
+                    <p>Наша интерактивная карта позволяет изучить города, села, культурыне и религиозные объекты в Ингушетии. На карте отмечены города, села, культурные и религиозные объекты, имеющие особое значение для ингушской культуры.</p>
+                    
+                    <p>Вы можете:</p>
+                    <ul>
+                        <li>Переключаться между различными слоями (населенные пункты, культурные и религиозные объекты)</li>
+                        <li>Получить подробную информацию о каждом объекте, нажав на соответствующий значок на карте</li>
+                        <li>Использовать поиск для быстрого нахождения интересующего вас объекта</li>
+                        <li>Переключаться между обычной картой и спутниковым снимком</li>
+                    </ul>
+                    
+                    <p>Карта постоянно обновляется и дополняется новой информацией. Если у вас есть исторические сведения, которые могут дополнить нашу карту, пожалуйста, <a href="/contact">свяжитесь с нами</a>.</p>
+                </div>
+            </section>
+        </main>
+        
+        <footer class="fade-in delay-4">
+            &copy; 2025 Комитет Ингушской Независимости
+        </footer>
+    </div>
+    
+    <script src="/js/animations.js"></script>
+    <script src="/js/navigation.js"></script>
+    <script src="/js/interactive-map.js"></script>
+    <script>
+        // Скрипт для управления вкладками
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Удаляем активный класс у всех кнопок и вкладок
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Добавляем активный класс нажатой кнопке
+                    this.classList.add('active');
+                    
+                    // Показываем соответствующую вкладку
+                    const tabId = 'tab-' + this.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // Функция поиска по объектам
+            const searchInput = document.getElementById('place-search');
+            searchInput.addEventListener('input', function() {
+                const searchText = this.value.toLowerCase();
+                const placeItems = document.querySelectorAll('.place-item');
+                
+                placeItems.forEach(item => {
+                    const placeName = item.querySelector('.place-name').textContent.toLowerCase();
+                    if (placeName.includes(searchText)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="<%= locale %>">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Комитет Ингушской Независимости - Главная</title>
+    
+    <%- include('./partials/seo-meta', {
+        title: 'Комитет Ингушской Независимости - Официальный сайт',
+        description: 'Официальный сайт Комитета Ингушской Независимости. Мы стремимся сохранять и развивать культурное наследие ингушского народа, защищать его интересы и права.',
+        keywords: 'Ингушетия, комитет, независимость, культура, наследие, права, ингушский народ, история, традиции',
+        req: typeof req !== 'undefined' ? req : { originalUrl: '/' }
+    }) %>
+    
+    <link rel="stylesheet" href="/styles.css">
+    <!-- Добавляем Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    
+    <%- include('./partials/google-analytics') %>
+</head>
+<body>
+    <!-- Фоновое изображение с горами -->
+    <div class="page-background"></div>
+    
+    <div class="container">
+        <header class="fade-in delay-1" role="banner">
+            <div class="logo">
+                <img src="/IMG/logo.png" alt="Логотип Комитета Ингушской Независимости - изображение герба">
+            </div>
+            <h1 class="site-title">Комитет Ингушской Независимости</h1>
+        </header>
+
+
+        <%- include('./partials/navigation') %>
+
+    <!-- Добавить между навигацией и закрывающими тегами HTML в index.ejs -->
+        
+<main role="main">
+    <section class="hero-section fade-in delay-3" aria-labelledby="hero-heading">
+        <h2 id="hero-heading">Добро пожаловать на официальный сайт Комитета Ингушской Независимости</h2>
+        <p class="hero-text">Мы стремимся сохранять и развивать культурное наследие ингушского народа, защищать его интересы и права.</p>
+        <div class="button-group" role="group" aria-label="Основные действия">
+            <a href="/about" class="btn btn-primary btn-icon" aria-label="Узнать больше о комитете">
+                <i class="fas fa-info-circle" aria-hidden="true"></i> О комитете
+            </a>
+            <a href="/contact" class="btn btn-glow" aria-label="Связаться для сотрудничества">
+                Присоединиться к нам
+            </a>
+        </div>
+    </section>
+
+    <section class="featured-content fade-in delay-4" aria-label="Основные разделы сайта">
+        <div class="featured-box">
+            <div class="icon-wrapper" aria-hidden="true">
+                <i class="fas fa-users fa-2x"></i>
+            </div>
+            <h3>Наша деятельность</h3>
+            <p>Познакомьтесь с текущими проектами и направлениями деятельности комитета.</p>
+            <a href="/activities" class="btn btn-secondary" aria-label="Узнать о деятельности комитета">Подробнее</a>
+        </div>
+
+        <div class="featured-box">
+            <div class="icon-wrapper" aria-hidden="true">
+                <i class="fas fa-handshake fa-2x"></i>
+            </div>
+            <h3>Сотрудничество</h3>
+            <p>Вы можете присоединиться к нашей деятельности или предложить сотрудничество.</p>
+            <a href="/contact" class="btn btn-secondary" aria-label="Перейти к форме контактов">Связаться с нами</a>
+        </div>
+    </section>
+</main>
+
+<%- include('./partials/footer') %>
+</div>
+
+</body>
+</html>

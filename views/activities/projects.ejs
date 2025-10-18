@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проекты - Комитет Ингушской Независимости</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Оставьте здесь только стили, специфичные для содержимого проектов,
+           если они не в styles.css */
+
+        /* Стили для секции проектов */
+        .projects-section {
+            margin-top: 20px;
+        }
+
+        .projects-section h2 {
+            color: #111;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Стили для вводного текста */
+        .intro-text {
+            font-size: 1.1em;
+            color: #111; /* Цвет текста - почти черный */
+            text-align: center;
+            margin-bottom: 30px;
+            max-width: 800px; /* Ограничение ширины для читаемости */
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+
+        .projects-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        /* Стили для отдельного блока проекта */
+        .project-box {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            width: 300px; /* Фиксированная ширина для примера */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Выравнивание текста по центру */
+            display: flex; /* Используем flexbox для содержимого блока */
+            flex-direction: column; /* Элементы располагаются в колонку */
+            justify-content: space-between; /* Распределяем пространство */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Плавные переходы при наведении */
+            cursor: pointer; /* Курсор в виде указателя */
+        }
+
+        .project-box:hover {
+            transform: translateY(-5px); /* Небольшой сдвиг вверх при наведении */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Увеличение тени */
+        }
+
+        /* Стили для иконок проектов */
+        .project-icon {
+            font-size: 3em; /* Размер иконки */
+            color: #28a745; /* Цвет иконки - ЗЕЛЕНЫЙ */
+            margin-bottom: 15px; /* Отступ снизу */
+        }
+
+
+        .project-box h3 {
+            color: #28a745; /* Цвет заголовка проекта - ЗЕЛЕНЫЙ */
+            font-size: 1.5em;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .project-box p {
+            color: #333; /* Цвет параграфа - ЧЕРНЫЙ */
+            font-size: 1em;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            flex-grow: 1; /* Позволяет параграфу занимать доступное место */
+        }
+
+        .project-box .status {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #28a745; /* Цвет для статуса "В процессе" */
+        }
+
+        .project-box .status.planned {
+            color: #ffc107; /* Цвет для статуса "Планируется" (желтый/оранжевый) */
+        }
+
+        /* Стили для секции "Присоединяйтесь" */
+        .join-us-section {
+            margin-top: 40px;
+            text-align: center;
+            padding: 30px 20px;
+            background-color: #e9ecef; /* Светло-серый фон */
+            border-radius: 8px;
+        }
+
+        .join-us-section h2 {
+            color: #333;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .join-us-section p {
+            color: #555;
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .join-us-section .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #28a745; /* Зеленая кнопка */
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+
+        .join-us-section .btn:hover {
+            background-color: #218838; /* Темнее зеленый при наведении */
+        }
+
+
+        /* Медиа-запрос для адаптивности */
+        @media (max-width: 768px) {
+            .page-content-wrapper {
+                 flex-direction: column;
+                 gap: 0; /* Убираем gap, если сайдбар сверху */
+            }
+
+            .sidebar {
+                width: 100%;
+                margin-bottom: 20px;
+                padding: 10px 20px;
+            }
+
+             .page-content-wrapper main {
+                padding: 10px;
+            }
+
+
+            .projects-container {
+                 flex-direction: column;
+                 align-items: center;
+            }
+
+            .project-box {
+                 width: 95%;
+            }
+        }
+
+    </style>
+    <script src="/js/animations.js"></script>
+</head>
+<body>
+    <div class="page-background"></div>
+
+    <div class="container">
+        <header class="fade-in delay-1">
+            <h1>Проекты Комитета</h1>
+        </header>
+
+        <div class="page-content-wrapper fade-in delay-2">
+
+            <%- include('../partials/sidebar') %>
+
+            <main class="content">
+                <p class="intro-text">
+                    Комитет Ингушской Независимости активно работает над реализацией проектов, направленных на сохранение и развитие культуры, языка и истории ингушского народа, а также на защиту его прав. Здесь вы можете ознакомиться с нашими ключевыми инициативами.
+                </p>
+
+                <section class="projects-section">
+                    <h2>Наши проекты</h2>
+                    <div class="projects-container">
+
+                        <div class="project-box">
+                            <i class="fas fa-language project-icon"></i> <h3>Ингушский язык и культура</h3>
+                            <p>Проект по созданию учебных материалов и организации курсов ингушского языка для сохранения и развития языковых навыков среди молодежи.</p>
+                            <span class="status">В процессе</span>
+                            <p class="help-text">Если желаете помочь, обращайтесь в бот обратной связи в нашем Telegram канале</p>
+                        </div>
+
+                        <div class="project-box">
+                             <i class="fas fa-code project-icon"></i> <h3>Цифровизация языка</h3>
+                            <p>Внедрение ингушского языка в Google переводчик, Chat GPT и иные важные инструменты для цифровизации языка и его дальнейшего развития.</p>
+                            <span class="status">В процессе</span>
+                            <p class="help-text">Если желаете помочь, обращайтесь в бот обратной связи в нашем Telegram канале</p>
+                        </div>
+
+                        <div class="project-box">
+                            <i class="fas fa-globe project-icon"></i> <h3>Информационный портал</h3>
+                            <p>Создание полноценного информационного ресурса о культуре, истории и современном положении ингушского народа на нескольких языках.</p>
+                            <span class="status planned">Планируется</span>
+                            <p class="help-text">Если желаете помочь, обращайтесь в бот обратной связи в нашем Telegram канале</p>
+                        </div>
+
+                        </div>
+                </section>
+
+                <section class="join-us-section">
+                    <h2>Присоединяйтесь к нашей деятельности</h2>
+                    <p>
+                        Мы приглашаем всех, кто разделяет наши ценности и цели, присоединиться к работе Комитета. Ваша поддержка и участие могут значительно помочь в реализации наших проектов и достижении поставленных задач.
+                    </p>
+                    <a href="https://t.me/galgaykomitet_bot" class="btn">
+                         <i class="fab fa-telegram-plane"></i> Связаться через Telegram
+                    </a>
+                    </section>
+
+
+            </main>
+            </div>
+        <footer>
+            <p>&copy; Комитет Ингушской Независимости</p>
+        </footer>
+    </div>
+
+    <script src="/js/animations.js"></script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты - Комитет Ингушской Независимости</title>
+    
+    <%- include('./partials/seo-meta', {
+        title: 'Контакты - Комитет Ингушской Независимости',
+        description: 'Свяжитесь с Комитетом Ингушской Независимости. Наши официальные каналы в Telegram и YouTube.',
+        keywords: 'контакты, Ингушетия, комитет, Telegram, YouTube, связь',
+        req: typeof req !== 'undefined' ? req : { originalUrl: '/contact' }
+    }) %>
+    
+    <link rel="stylesheet" href="/styles.css">
+    <!-- Добавляем Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <%- include('./partials/google-analytics') %>
+</head>
+<body>
+    <!-- Фоновое изображение с горами -->
+    <div class="page-background"></div>
+    
+    <div class="container">
+        <header class="fade-in delay-1">
+            <div class="logo">
+                <img src="/IMG/logo.png" alt="Логотип Комитета Ингушской Независимости">
+            </div>
+            <h1 class="site-title">Комитет Ингушской Независимости</h1>
+        </header>
+        
+        <nav class="fade-in delay-2">
+            <ul>
+                <li><a href="/">Главная</a></li>
+                
+                <li class="dropdown">
+                    <a href="/about">О комитете</a>
+                    <div class="dropdown-content">
+                        <a href="/about/mission">Наша миссия</a>
+                        <a href="/about/history">История</a>
+                        <a href="/about/goals">Наши цели</a>
+                    </div>
+                </li>
+
+                <li><a href="/activities">Деятельность</a></li>
+                <li><a href="/map">Карта</a></li>
+                <li><a href="/contact">Контакты</a></li>
+            </ul>
+        </nav>
+        
+        <main>
+            <section class="content fade-in delay-3">
+                <h2>Контакты</h2>
+                <p>Свяжитесь с нами через наши официальные каналы:</p>
+                
+                <!-- Улучшенный раздел с социальными сетями -->
+                <div class="social-links-section fade-in delay-4">
+                    <div class="social-card">
+                        <div class="social-icon-large telegram">
+                            <i class="fab fa-telegram fa-3x"></i>
+                        </div>
+                        <div class="social-info">
+                            <h3>Основной канал Комитета Ингушской Независимости</h3>
+                            <p>Подписывайтесь на наш Telegram канал для получения актуальных обновлений.</p>
+                            <a href="https://t.me/ingcommitte" target="_blank" class="btn btn-primary btn-icon">
+                                <i class="fas fa-external-link-alt"></i> Перейти в Telegram
+                            </a>
+                        </div>
+                    </div>
+
+                     <div class="social-links-section fade-in delay-4">
+                    <div class="social-card">
+                        <div class="social-icon-large telegram">
+                            <i class="fab fa-telegram fa-3x"></i>
+                        </div>
+                        <div class="social-info">
+                            <h3>Департамент Правозащиты Комитета Ингушской Независимости</h3>
+                            <p>Подписывайтесь на наш Telegram канал для получения актуальных обновлений.</p>
+                            <a href="https://t.me/DHR_BAQO" target="_blank" class="btn btn-primary btn-icon">
+                                <i class="fas fa-external-link-alt"></i> Перейти в Telegram
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="social-card">
+                        <div class="social-icon-large youtube">
+                            <i class="fab fa-youtube fa-3x"></i>
+                        </div>
+                        <div class="social-info">
+                            <h3>YouTube канал</h3>
+                            <p>Смотрите наши видеоматериалы, интервью и репортажи на нашем YouTube канале.</p>
+                            <a href="https://www.youtube.com/@ingcommittee" target="_blank" class="btn btn-glow btn-icon">
+                                <i class="fas fa-external-link-alt"></i> Перейти на YouTube
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Дополнительная информация -->
+                <div class="contact-info fade-in delay-4">
+                    <h3>Вопросы и предложения</h3>
+                    <p>По всем вопросам и предложениям вы можете связаться с нами через наши социальные сети. Мы стараемся отвечать максимально оперативно.</p>
+                </div>
+                
+                <!-- Форма обратной связи -->
+                <div class="contact-form-section fade-in delay-5">
+                    <h3>Оставьте сообщение</h3>
+                    <p>Напишите нам ваши пожелания или вопросы. Для оперативной связи рекомендуем использовать наши каналы в Telegram.</p>
+                    
+                    <form id="contactForm" action="/submit-contact" method="POST" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Ваше имя <span class="required">*</span></label>
+                            <input type="text" id="name" name="name" required aria-required="true" placeholder="Введите ваше имя">
+                            <span class="error-message" id="name-error"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Сообщение <span class="required">*</span></label>
+                            <textarea id="message" name="message" rows="5" required aria-required="true" placeholder="Введите ваше сообщение"></textarea>
+                            <span class="error-message" id="message-error"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-icon">
+                                <i class="fas fa-paper-plane"></i> Отправить
+                            </button>
+                        </div>
+                        
+                        <div id="form-status" class="form-status"></div>
+                        
+                        <p class="form-note">
+                            <i class="fas fa-info-circle"></i> 
+                            Ваше сообщение будет сохранено. Для быстрого ответа напишите нам в 
+                            <a href="https://t.me/ingcommitte" target="_blank">Telegram</a>
+                        </p>
+                    </form>
+                </div>
+            </section>
+        </main>
+        
+        <%- include('./partials/footer') %>
+    </div>
+    
+    <script src="/js/form-validation.js"></script>
+</body>
+</html>

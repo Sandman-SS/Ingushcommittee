@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Спасибо за сообщение - Комитет Ингушской Независимости</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .thank-you-page {
+            text-align: center;
+            padding: 60px 20px;
+            min-height: 400px;
+        }
+        .thank-you-icon {
+            font-size: 80px;
+            color: #4caf50;
+            margin-bottom: 20px;
+        }
+        .thank-you-message {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .thank-you-description {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .thank-you-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-background"></div>
+    
+    <div class="container">
+        <header class="fade-in delay-1" role="banner">
+            <div class="logo">
+                <img src="/IMG/logo.png" alt="Логотип Комитета Ингушской Независимости">
+            </div>
+            <h1 class="site-title">Комитет Ингушской Независимости</h1>
+        </header>
+
+        <%- include('./partials/navigation') %>
+
+        <main class="thank-you-page fade-in delay-3">
+            <i class="fas fa-check-circle thank-you-icon"></i>
+            <h2 class="thank-you-message">Спасибо за ваше сообщение!</h2>
+            <p class="thank-you-description">
+                Мы получили ваше сообщение и свяжемся с вами в ближайшее время. 
+                На указанный вами email отправлено письмо с подтверждением.
+            </p>
+            <div class="thank-you-actions">
+                <a href="/" class="btn btn-primary">
+                    <i class="fas fa-home"></i> Вернуться на главную
+                </a>
+                <a href="/about" class="btn btn-secondary">
+                    <i class="fas fa-info-circle"></i> О комитете
+                </a>
+            </div>
+        </main>
+
+        <footer class="fade-in delay-4" role="contentinfo">
+            <p>&copy; 2025 Комитет Ингушской Независимости</p>
+        </footer>
+    </div>
+
+    <script src="/js/animations.js"></script>
+    <script src="/js/navigation.js"></script>
+</body>
+</html>
