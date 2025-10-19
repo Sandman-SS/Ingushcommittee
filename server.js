@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const app = express();
+app.use(express.static('public'));
 const port = process.env.PORT || 3000;
 
 // Импорт dotenv для работы с переменными окружения (.env файл)
