@@ -8,11 +8,7 @@ npm install
 ```
 
 ### 2. Настройка переменных окружения
-Скопируйте `.env.example` в `.env` и заполните:
-
-**Обязательно:**
-- `TELEGRAM_BOT_TOKEN` - токен бота от @BotFather
-- `TELEGRAM_CHANNEL_ID` - ID канала (начинается с `-100`)
+Скопируйте `.env.example` в `.env`
 
 ### 3. Запуск сервера
 ```bash

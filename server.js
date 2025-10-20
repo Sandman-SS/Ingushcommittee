@@ -30,9 +30,6 @@ if (envCheck.warnings.length > 0) {
     console.log('');
 }
 
-// Импорт TelegramBot API
-const TelegramBot = require('node-telegram-bot-api');
-
 // Импорт Helmet для настройки HTTP-заголовков безопасности
 const helmet = require('helmet');
 
@@ -178,34 +175,7 @@ app.use(
     })
 );
 
-// --- НАСТРОЙКИ TELEGRAM BOT ---
-
-// Получение токена и ID канала из переменных окружения
-const botToken = process.env.TELEGRAM_BOT_TOKEN;
-const channelId = process.env.TELEGRAM_CHANNEL_ID;
-
-// Проверка наличия токена
-if (!botToken) {
-    console.error('Ошибка: Токен Telegram-бота не установлен. Убедитесь, что TELEGRAM_BOT_TOKEN определен в файле .env');
-    process.exit(1); // Завершаем процесс, если токен не найден
-}
-if (!channelId) {
-    console.error('Ошибка: ID Telegram-канала не установлен. Убедитесь, что TELEGRAM_CHANNEL_ID определен в файле .env');
-    // Не завершаем, так как это может быть не критично, но предупреждаем
-}
-
-// Инициализация Telegram Bot с polling (для получения обновлений)
-// В продакшене для большой нагрузки часто используют вебхуки, но polling проще для начала
-const bot = new TelegramBot(botToken, { polling: true });
-
-// Обработчик ошибок Polling (полезно для отладки)
-bot.on('polling_error', (error) => {
-    console.error('Polling error:', error.code, error.message);
-    log.error('Telegram bot polling error', {
-        code: error.code,
-        message: error.message
-    });
-});
+// --- ЛОГИКА TELEGRAM УДАЛЕНА ---
 
 
 // --- МАРШРУТЫ САЙТА ---
@@ -351,29 +321,7 @@ app.post('/submit-contact', async (req, res) => {
             timestamp: new Date().toISOString()
         });
 
-        // Отправляем сообщение в Telegram
-        try {
-            const telegramMessage = `
-🔔 *Новое сообщение с сайта*
-
-👤 *От:* ${formData.name}
-💬 *Сообщение:*
-${formData.message}
-
-🕒 ${new Date().toLocaleString('ru-RU')}
-            `;
-
-            await bot.sendMessage(channelId, telegramMessage, {
-                parse_mode: 'Markdown'
-            });
-            
-            log.info('Message sent to Telegram successfully');
-        } catch (telegramError) {
-            log.error('Failed to send message to Telegram', {
-                error: telegramError.message
-            });
-            // Не прерываем выполнение, так как сообщение уже залогировано
-        }
+        // Отправка в Telegram отключена. Сообщение только логируется.
 
         // Если запрос через AJAX, отправляем JSON ответ
         if (req.xhr || (req.headers.accept && req.headers.accept.indexOf('json') > -1)) {
@@ -440,7 +388,6 @@ app.use((err, req, res, next) => {
 
 app.listen(port, '0.0.0.0', () => {
     console.log(`Сервер запущен на http://localhost:${port}`);
-    console.log('Telegram bot polling started.');
     log.info('Server started successfully', {
         port: port,
         env: process.env.NODE_ENV,

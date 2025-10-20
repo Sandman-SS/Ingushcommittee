@@ -70,6 +70,19 @@ document.addEventListener('DOMContentLoaded', function() {
       icon.classList.remove('fa-times');
       icon.classList.add('fa-bars');
     }
+
+    // При открытии меню на мобильном сразу раскрываем подменю "О комитете"
+    if (window.innerWidth <= 768) {
+      const aboutDropdown = nav.querySelector('.about-dropdown');
+      if (aboutDropdown) {
+        const aboutLink = aboutDropdown.querySelector('a');
+        const aboutContent = aboutDropdown.querySelector('.dropdown-content');
+        if (aboutLink && aboutContent) {
+          aboutLink.setAttribute('aria-expanded', 'true');
+          aboutContent.style.display = 'block';
+        }
+      }
+    }
   });
   
   // Закрытие меню при клике вне навигации
@@ -103,8 +116,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const dropdownContent = this.nextElementSibling;
         if (dropdownContent.style.display === 'block') {
           dropdownContent.style.display = 'none';
+          this.setAttribute('aria-expanded', 'false');
         } else {
           dropdownContent.style.display = 'block';
+          this.setAttribute('aria-expanded', 'true');
         }
       });
     });

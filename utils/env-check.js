@@ -3,10 +3,8 @@ const path = require('path');
 
 // Функция для проверки наличия и валидности переменных окружения
 function checkEnvironmentVariables() {
-    const requiredVars = [
-        'TELEGRAM_BOT_TOKEN',
-        'TELEGRAM_CHANNEL_ID'
-    ];
+    // Telegram-переменные больше не обязательны
+    const requiredVars = [];
 
     const warnings = [];
     const errors = [];
@@ -21,16 +19,7 @@ function checkEnvironmentVariables() {
         warnings.push('.env файл не найден');
     }
 
-    // Проверяем обязательные переменные
-    requiredVars.forEach(varName => {
-        if (!process.env[varName]) {
-            errors.push(`${varName} не установлена`);
-            console.error(`❌ Ошибка: переменная ${varName} не установлена!`);
-        } else if (process.env[varName].includes('your_') || process.env[varName].includes('_here')) {
-            warnings.push(`${varName} содержит шаблонное значение`);
-            console.warn(`⚠️  Предупреждение: ${varName} содержит шаблонное значение!`);
-        }
-    });
+    // Нет обязательных переменных на данный момент
 
     // Проверяем опциональные переменные для полной функциональности
     const optionalVars = {
