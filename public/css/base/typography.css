@@ -1,0 +1,346 @@
+/* Typography System */
+
+/* Fluid Typography with clamp() */
+h1, .h1 {
+  font-family: var(--font-family-heading);
+  font-size: clamp(1.75rem, 4vw + 1rem, 2.5rem);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  margin: 0 0 1rem;
+  color: var(--color-primary);
+}
+
+h2, .h2 {
+  font-family: var(--font-family-heading);
+  font-size: clamp(1.5rem, 3vw + 0.5rem, 2rem);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-normal);
+  margin: 0 0 0.875rem;
+  color: var(--color-primary);
+}
+
+h3, .h3 {
+  font-family: var(--font-family-heading);
+  font-size: clamp(1.25rem, 2vw + 0.5rem, 1.5rem);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-normal);
+  margin: 0 0 0.75rem;
+  color: var(--color-primary);
+}
+
+h4, .h4 {
+  font-family: var(--font-family-heading);
+  font-size: clamp(1.125rem, 1.5vw + 0.5rem, 1.25rem);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-normal);
+  margin: 0 0 0.625rem;
+  color: var(--color-text-primary);
+}
+
+h5, .h5 {
+  font-family: var(--font-family-heading);
+  font-size: clamp(1rem, 1vw + 0.5rem, 1.125rem);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-normal);
+  margin: 0 0 0.5rem;
+  color: var(--color-text-primary);
+}
+
+h6, .h6 {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-normal);
+  margin: 0 0 0.5rem;
+  color: var(--color-text-primary);
+}
+
+/* Body text */
+p {
+  margin: 0 0 1rem;
+  color: var(--color-text-primary);
+  line-height: var(--line-height-relaxed);
+}
+
+/* Links */
+a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-primary-dark);
+  text-decoration: none;
+}
+
+a:focus {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* Lists */
+ul, ol {
+  margin: 0 0 1rem;
+  padding-left: 1.5rem;
+}
+
+ul {
+  list-style-type: disc;
+}
+
+ol {
+  list-style-type: decimal;
+}
+
+li {
+  margin-bottom: 0.25rem;
+  line-height: var(--line-height-relaxed);
+}
+
+/* Nested lists */
+ul ul, ol ol, ul ol, ol ul {
+  margin: 0.25rem 0;
+}
+
+/* Definition lists */
+dl {
+  margin: 0 0 1rem;
+}
+
+dt {
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: 0.25rem;
+}
+
+dd {
+  margin-left: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Blockquotes */
+blockquote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.5rem;
+  border-left: 4px solid var(--color-primary);
+  background-color: var(--color-background-light);
+  font-style: italic;
+  color: var(--color-text-secondary);
+}
+
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* Code */
+code {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.875em;
+  background-color: var(--color-background-light);
+  padding: 0.125rem 0.25rem;
+  border-radius: var(--radius-sm);
+  color: var(--color-primary);
+}
+
+pre {
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: var(--color-background-light);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.875rem;
+  line-height: var(--line-height-normal);
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+}
+
+/* Small text */
+small, .small {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+/* Large text */
+.large {
+  font-size: var(--font-size-lg);
+}
+
+/* Text utilities */
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.text-lowercase {
+  text-transform: lowercase;
+}
+
+.text-capitalize {
+  text-transform: capitalize;
+}
+
+.text-nowrap {
+  white-space: nowrap;
+}
+
+.text-break {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Font weights */
+.font-light {
+  font-weight: var(--font-weight-light);
+}
+
+.font-normal {
+  font-weight: var(--font-weight-normal);
+}
+
+.font-medium {
+  font-weight: var(--font-weight-medium);
+}
+
+.font-semibold {
+  font-weight: var(--font-weight-semibold);
+}
+
+.font-bold {
+  font-weight: var(--font-weight-bold);
+}
+
+/* Text colors */
+.text-primary {
+  color: var(--color-text-primary);
+}
+
+.text-secondary {
+  color: var(--color-text-secondary);
+}
+
+.text-muted {
+  color: var(--color-text-muted);
+}
+
+.text-success {
+  color: var(--color-success);
+}
+
+.text-warning {
+  color: var(--color-warning);
+}
+
+.text-error {
+  color: var(--color-error);
+}
+
+.text-info {
+  color: var(--color-info);
+}
+
+/* Line heights */
+.leading-tight {
+  line-height: var(--line-height-tight);
+}
+
+.leading-normal {
+  line-height: var(--line-height-normal);
+}
+
+.leading-relaxed {
+  line-height: var(--line-height-relaxed);
+}
+
+.leading-loose {
+  line-height: var(--line-height-loose);
+}
+
+/* Responsive typography adjustments */
+@media (max-width: 768px) {
+  /* Slightly smaller base font size on mobile */
+  body {
+    font-size: clamp(14px, 2vw, 16px);
+  }
+  
+  /* Adjust heading sizes for mobile */
+  h1, .h1 {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+  
+  h2, .h2 {
+    font-size: clamp(1.25rem, 5vw, 1.5rem);
+  }
+  
+  h3, .h3 {
+    font-size: clamp(1.125rem, 4vw, 1.25rem);
+  }
+}
+
+/* Print styles */
+@media print {
+  * {
+    color: black !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  a, a:visited {
+    text-decoration: underline;
+  }
+  
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+  
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+  
+  pre, blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+  
+  thead {
+    display: table-header-group;
+  }
+  
+  tr, img {
+    page-break-inside: avoid;
+  }
+  
+  img {
+    max-width: 100% !important;
+  }
+  
+  p, h2, h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  
+  h2, h3 {
+    page-break-after: avoid;
+  }
+}

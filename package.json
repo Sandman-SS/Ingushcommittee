@@ -8,7 +8,11 @@
     "start": "node server.js",
     "add-news": "node utils/add-news-manually.js",
     "check-bot": "node utils/check-bot-permissions.js",
-    "export-history": "node utils/export-telegram-history.js"
+    "export-history": "node utils/export-telegram-history.js",
+    "export-coordinates": "node utils/export-coordinates.js",
+    "export-coordinates:json": "node utils/export-coordinates.js json map-data.json",
+    "export-coordinates:csv": "node utils/export-coordinates.js csv map-data.csv",
+    "export-coordinates:geojson": "node utils/export-coordinates.js geojson map-data.geojson"
   },
   "keywords": [],
   "author": "",

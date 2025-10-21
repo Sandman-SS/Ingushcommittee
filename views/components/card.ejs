@@ -1,0 +1,27 @@
+<!-- Universal Card Component -->
+<div class="card <%= locals.variant || '' %> <%= locals.className || '' %>">
+    <% if (locals.icon) { %>
+        <div class="card__icon">
+            <i class="<%= icon %>" aria-hidden="true"></i>
+        </div>
+    <% } %>
+    
+    <% if (locals.title) { %>
+        <h3 class="card__title"><%= title %></h3>
+    <% } %>
+    
+    <% if (locals.content) { %>
+        <div class="card__content"><%- content %></div>
+    <% } %>
+    
+    <% if (locals.link) { %>
+        <div class="card__footer">
+            <a href="<%= link.url %>" class="btn <%= link.variant || 'btn-secondary' %>">
+                <% if (link.icon) { %>
+                    <i class="<%= link.icon %>" aria-hidden="true"></i>
+                <% } %>
+                <%= link.text %>
+            </a>
+        </div>
+    <% } %>
+</div>

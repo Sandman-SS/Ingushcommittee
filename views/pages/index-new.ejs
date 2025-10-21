@@ -1,0 +1,60 @@
+<%- include('../layouts/base', {
+    seoData: {
+        title: 'Комитет Ингушской Независимости - Главная',
+        description: 'Официальный сайт Комитета Ингушской Независимости. Мы стремимся сохранять и развивать культурное наследие ингушского народа, защищать его интересы и права.',
+        keywords: 'Ингушетия, комитет, независимость, культура, наследие, права, ингушский народ, история, традиции',
+        req: typeof req !== 'undefined' ? req : { originalUrl: '/' }
+    },
+    bodyClass: 'home-page',
+    scripts: ['/js/pages/map.js']
+}) %>
+
+<!-- Hero Section -->
+<%- include('../components/hero', {
+    title: __('home.welcome'),
+    subtitle: __('home.subtitle'),
+    buttons: [
+        {
+            href: '/about',
+            text: __('home.about_button'),
+            variant: 'btn-primary',
+            icon: 'fas fa-info-circle',
+            ariaLabel: 'Узнать больше о комитете'
+        },
+        {
+            href: '/contact',
+            text: __('home.join_button'),
+            variant: 'btn-glow',
+            ariaLabel: 'Связаться для сотрудничества'
+        }
+    ]
+}) %>
+
+<!-- Featured Content -->
+<section class="featured-content fade-in delay-4" aria-label="Основные разделы сайта">
+    <%- include('../components/card', {
+        variant: 'card--featured',
+        icon: 'fas fa-users fa-2x',
+        title: __('home.our_activities'),
+        content: __('home.our_activities_desc'),
+        link: {
+            url: '/activities',
+            text: __('home.learn_more'),
+            variant: 'btn-secondary',
+            ariaLabel: 'Узнать о деятельности комитета'
+        }
+    }) %>
+
+    <%- include('../components/card', {
+        variant: 'card--featured',
+        icon: 'fas fa-handshake fa-2x',
+        title: __('home.cooperation'),
+        content: __('home.cooperation_desc'),
+        link: {
+            url: '/contact',
+            text: __('home.contact_us'),
+            variant: 'btn-secondary',
+            ariaLabel: 'Перейти к форме контактов'
+        }
+    }) %>
+</section>

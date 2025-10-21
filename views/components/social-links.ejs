@@ -1,0 +1,23 @@
+<!-- Social Links Component -->
+<div class="social-links-section fade-in delay-4">
+    <% if (locals.socialLinks && locals.socialLinks.length > 0) { %>
+        <% locals.socialLinks.forEach(social => { %>
+            <div class="social-card">
+                <div class="social-icon-large <%= social.platform %>">
+                    <i class="<%= social.icon %> fa-3x"></i>
+                </div>
+                <div class="social-info">
+                    <h3><%= social.title %></h3>
+                    <p><%= social.description %></p>
+                    <%- include('./button', {
+                        href: social.url,
+                        text: social.buttonText,
+                        variant: social.buttonVariant || 'btn-primary',
+                        icon: 'fas fa-external-link-alt',
+                        target: '_blank'
+                    }) %>
+                </div>
+            </div>
+        <% }) %>
+    <% } %>
+</div>

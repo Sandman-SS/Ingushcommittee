@@ -1,0 +1,140 @@
+/* Container System */
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 16px; /* Базовый отступ для мобильных */
+  position: relative;
+}
+
+/* Responsive container sizes */
+@media (min-width: 480px) {
+  .container {
+    max-width: var(--container-sm);
+    padding: 0 20px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: var(--container-md);
+    padding: 0 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: var(--container-lg);
+    padding: 0 32px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: var(--container-xl);
+  }
+}
+
+@media (min-width: 1400px) {
+  .container {
+    max-width: var(--container-2xl);
+  }
+}
+
+/* Container variants */
+.container-fluid {
+  width: 100%;
+  padding: 0 16px;
+}
+
+.container-narrow {
+  max-width: 600px;
+}
+
+.container-wide {
+  max-width: 1400px;
+}
+
+/* Container with background */
+.container-bg {
+  background-color: var(--color-background-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+/* Container with padding */
+.container-padded {
+  padding: var(--spacing-xl);
+}
+
+@media (max-width: 768px) {
+  .container-padded {
+    padding: var(--spacing-lg);
+  }
+}
+
+/* Full height container */
+.container-full-height {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container-full-height main {
+  flex: 1;
+}
+
+/* Centered container */
+.container-centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* Container with max content width */
+.container-content {
+  max-width: 65ch; /* Optimal reading width */
+}
+
+/* Container utilities */
+.container-no-padding {
+  padding: 0;
+}
+
+.container-no-margin {
+  margin: 0;
+}
+
+/* Mobile-specific container adjustments */
+@media (max-width: 768px) {
+  .container {
+    /* Fix mobile container positioning - prevent right shift */
+    background-color: var(--color-background-white);
+    box-shadow: var(--shadow-sm);
+    border-radius: var(--radius-md);
+    margin: 10px auto; /* Center with small margin */
+    padding: 12px 16px;
+    width: calc(100% - 20px); /* Account for margins to prevent overflow */
+    position: relative;
+    left: 0; /* Ensure no horizontal shift */
+    transform: none; /* Remove any transforms that cause shift */
+    max-width: none; /* Allow full width on mobile */
+  }
+}
+
+/* iOS safe area support for containers */
+@supports (padding: max(0px)) {
+  .container {
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      padding-left: max(12px, env(safe-area-inset-left));
+      padding-right: max(12px, env(safe-area-inset-right));
+    }
+  }
+}

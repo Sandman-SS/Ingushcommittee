@@ -100,6 +100,11 @@ const staticOptions = {
         } else if (filePath.endsWith('.css') || filePath.endsWith('.js')) {
             res.setHeader('Cache-Control', 'public, max-age=86400'); // 1 день для CSS/JS
         }
+        
+        // Special handling for new CSS structure
+        if (filePath.includes('/css/')) {
+            res.setHeader('Content-Type', 'text/css');
+        }
     }
 };
 

@@ -1,0 +1,34 @@
+<!-- Button Component -->
+<% 
+const buttonClass = [
+    'btn',
+    locals.variant || 'btn-primary',
+    locals.size || '',
+    locals.icon ? 'btn-icon' : '',
+    locals.className || ''
+].filter(Boolean).join(' ');
+%>
+
+<% if (locals.href) { %>
+    <a href="<%= href %>" 
+       class="<%= buttonClass %>"
+       <% if (locals.ariaLabel) { %>aria-label="<%= ariaLabel %>"<% } %>
+       <% if (locals.target) { %>target="<%= target %>"<% } %>
+       <% if (locals.rel) { %>rel="<%= rel %>"<% } %>>
+        <% if (locals.icon) { %>
+            <i class="<%= icon %>" aria-hidden="true"></i>
+        <% } %>
+        <%= locals.text || locals.content %>
+    </a>
+<% } else { %>
+    <button type="<%= locals.type || 'button' %>" 
+            class="<%= buttonClass %>"
+            <% if (locals.ariaLabel) { %>aria-label="<%= ariaLabel %>"<% } %>
+            <% if (locals.disabled) { %>disabled<% } %>
+            <% if (locals.onclick) { %>onclick="<%= onclick %>"<% } %>>
+        <% if (locals.icon) { %>
+            <i class="<%= icon %>" aria-hidden="true"></i>
+        <% } %>
+        <%= locals.text || locals.content %>
+    </button>
+<% } %>

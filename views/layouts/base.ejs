@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="<%= locale %>">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= seoData.title || 'Комитет Ингушской Независимости' %></title>
+    
+    <%- include('../partials/seo-meta', seoData) %>
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="/css/main.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    
+    <!-- Additional CSS files -->
+    <% if (locals.additionalCSS) { %>
+        <% additionalCSS.forEach(css => { %>
+            <link rel="stylesheet" href="<%= css %>">
+        <% }) %>
+    <% } %>
+    
+    <%- include('../partials/google-analytics') %>
+</head>
+<body class="<%= locals.bodyClass || '' %>">
+    <!-- Skip navigation link for accessibility -->
+    <a href="#main-content" class="nav__skip">Перейти к основному содержимому</a>
+    
+    <!-- Page background -->
+    <div class="page-background"></div>
+    
+    <!-- Main container -->
+    <div class="container">
+        <!-- Header -->
+        <%- include('../partials/header') %>
+        
+        <!-- Navigation -->
+        <%- include('../partials/navigation') %>
+        
+        <!-- Main content -->
+        <main id="main-content" role="main">
+            <%- body %>
+        </main>
+        
+        <!-- Footer -->
+        <%- include('../partials/footer') %>
+    </div>
+    
+    <!-- Scripts -->
+    <%- include('../partials/scripts', { scripts: locals.scripts || [] }) %>
+</body>
+</html>

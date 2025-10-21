@@ -1,0 +1,190 @@
+/* Header System */
+
+.header {
+  background-color: var(--color-primary);
+  padding: var(--spacing-lg);
+  text-align: center;
+  position: relative;
+}
+
+.header__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform var(--transition-normal);
+}
+
+.header__logo:hover {
+  transform: scale(1.05);
+}
+
+.header__logo:focus {
+  outline: var(--focus-ring-width) solid var(--color-text-inverse);
+  outline-offset: var(--focus-ring-offset);
+  border-radius: var(--radius-md);
+}
+
+.header__logo-image {
+  width: 84px;
+  height: 84px;
+  margin-right: var(--spacing-lg);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-text-inverse);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition-normal);
+}
+
+.header__logo:hover .header__logo-image {
+  box-shadow: var(--shadow-md);
+}
+
+.header__title {
+  color: var(--color-text-inverse);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: var(--font-weight-bold);
+  margin: 0;
+  padding: var(--spacing-sm) 0;
+  line-height: var(--line-height-tight);
+}
+
+.header__subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  margin: var(--spacing-xs) 0 0;
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+/* Header variants */
+.header--compact {
+  padding: var(--spacing-md);
+}
+
+.header--compact .header__logo-image {
+  width: 60px;
+  height: 60px;
+  margin-right: var(--spacing-md);
+}
+
+.header--compact .header__title {
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+}
+
+.header--wide {
+  padding: var(--spacing-xl) var(--spacing-lg);
+}
+
+.header--wide .header__logo-image {
+  width: 100px;
+  height: 100px;
+  margin-right: var(--spacing-xl);
+}
+
+.header--wide .header__title {
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+}
+
+/* Header with background image */
+.header--with-bg {
+  position: relative;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  overflow: hidden;
+}
+
+.header--with-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('/img/mountains.jpg');
+  background-size: cover;
+  background-position: center;
+  filter: blur(2px);
+  opacity: 0.3;
+  z-index: -1;
+}
+
+.header--with-bg .header__container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Mobile-specific header adjustments */
+@media (max-width: 768px) {
+  .header {
+    padding: var(--spacing-md);
+  }
+  
+  .header__container {
+    flex-direction: column;
+    gap: var(--spacing-md);
+    text-align: center;
+  }
+  
+  .header__logo {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  .header__logo-image {
+    margin-right: 0;
+    margin-bottom: var(--spacing-sm);
+    width: 70px;
+    height: 70px;
+  }
+  
+  .header__title {
+    font-size: clamp(1.25rem, 5vw, 1.75rem);
+  }
+  
+  .header__subtitle {
+    font-size: clamp(0.75rem, 3vw, 0.875rem);
+  }
+  
+  .header--compact .header__logo-image {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .header--wide .header__logo-image {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .header {
+    border-bottom: 3px solid var(--color-text-inverse);
+  }
+  
+  .header__logo-image {
+    border-width: 3px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .header__logo {
+    transition: none;
+  }
+  
+  .header__logo:hover {
+    transform: none;
+  }
+  
+  .header__logo-image {
+    transition: none;
+  }
+}

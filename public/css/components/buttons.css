@@ -1,0 +1,349 @@
+/* Button System */
+
+/* Base button styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  margin: var(--spacing-sm) var(--spacing-xs);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-normal);
+  text-decoration: none;
+  text-align: center;
+  transition: all var(--transition-bounce);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+  transform: translateY(0);
+  min-height: var(--touch-target-min);
+  min-width: var(--touch-target-min);
+}
+
+/* Button hover effect with shimmer */
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: var(--shadow-md);
+  filter: brightness(1.05);
+}
+
+.btn:active {
+  transform: translateY(-1px) scale(1.01);
+  transition: all 0.1s ease;
+}
+
+.btn:focus {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn:disabled:hover {
+  transform: none;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Button variants */
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  color: var(--color-text-inverse);
+  border: 2px solid var(--color-primary);
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, transparent, rgba(0, 100, 0, 0.1));
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+}
+
+.btn-accent {
+  background: var(--color-accent);
+  color: var(--color-text-inverse);
+  border: 2px solid var(--color-accent);
+  box-shadow: 0 0 10px rgba(0, 119, 0, 0.5);
+}
+
+.btn-accent:hover {
+  background: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+  animation: 1.5s infinite alternate glow;
+  transform: translateY(-3px);
+}
+
+.btn-glow {
+  background: var(--color-accent);
+  color: var(--color-text-inverse);
+  border: 2px solid var(--color-accent);
+  box-shadow: 0 0 10px rgba(0, 119, 0, 0.5);
+}
+
+.btn-glow:hover {
+  animation: 1.5s infinite alternate glow;
+  transform: translateY(-3px);
+}
+
+.btn-ornament {
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  border: 2px solid var(--color-primary);
+  position: relative;
+}
+
+.btn-ornament::after,
+.btn-ornament::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(to right, #fff, transparent, #fff, transparent, #fff);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.btn-ornament::before {
+  top: 0;
+}
+
+.btn-ornament::after {
+  bottom: 0;
+}
+
+.btn-ornament:hover::after,
+.btn-ornament:hover::before {
+  opacity: 0.6;
+}
+
+.btn-ornament:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 77, 0, 0.3);
+}
+
+/* Button sizes */
+.btn-sm {
+  padding: var(--spacing-xs) var(--spacing-md);
+  font-size: var(--font-size-sm);
+  min-height: 36px;
+}
+
+.btn-lg {
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: var(--font-size-lg);
+  min-height: 52px;
+}
+
+.btn-xl {
+  padding: var(--spacing-lg) var(--spacing-2xl);
+  font-size: var(--font-size-xl);
+  min-height: 60px;
+}
+
+/* Button with icon */
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+}
+
+.btn-icon i {
+  font-size: 1.1em;
+  transition: transform var(--transition-normal);
+}
+
+.btn:hover .btn-icon i {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Button groups */
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  margin: var(--spacing-lg) 0;
+  align-items: center;
+}
+
+.button-group .btn {
+  margin: 0;
+}
+
+.button-group--vertical {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.button-group--center {
+  justify-content: center;
+}
+
+.button-group--space-between {
+  justify-content: space-between;
+}
+
+/* Full width button */
+.btn-block {
+  width: 100%;
+  display: flex;
+}
+
+/* Button animations */
+@keyframes glow {
+  from {
+    box-shadow: 0 0 10px rgba(0, 119, 0, 0.5);
+  }
+  to {
+    box-shadow: 0 0 20px rgba(0, 119, 0, 0.8);
+  }
+}
+
+/* Loading state */
+.btn-loading {
+  position: relative;
+  color: transparent;
+}
+
+.btn-loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Mobile-specific button adjustments */
+@media (max-width: 768px) {
+  .btn {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    font-size: var(--font-size-base);
+    min-height: var(--touch-target-comfortable);
+    margin: var(--spacing-xs) 0;
+  }
+  
+  .btn-sm {
+    padding: var(--spacing-xs) var(--spacing-md);
+    font-size: var(--font-size-sm);
+    min-height: var(--touch-target-min);
+  }
+  
+  .btn-lg {
+    padding: var(--spacing-md) var(--spacing-xl);
+    font-size: var(--font-size-lg);
+    min-height: 56px;
+  }
+  
+  .button-group {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  .button-group .btn {
+    width: 100%;
+  }
+  
+  /* Remove hover effects on touch devices */
+  @media (hover: none) and (pointer: coarse) {
+    .btn:hover {
+      transform: none;
+    }
+    
+    .btn:hover::before {
+      left: -100%;
+    }
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .btn {
+    border-width: 2px;
+  }
+  
+  .btn-primary {
+    background: var(--color-primary);
+    border-color: var(--color-text-primary);
+  }
+  
+  .btn-secondary {
+    background: transparent;
+    border-color: var(--color-text-primary);
+    color: var(--color-text-primary);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+  
+  .btn::before {
+    display: none;
+  }
+  
+  .btn:hover {
+    transform: none;
+  }
+  
+  .btn-icon i {
+    transition: none;
+  }
+  
+  .btn:hover .btn-icon i {
+    transform: none;
+  }
+  
+  @keyframes glow {
+    from, to {
+      box-shadow: 0 0 10px rgba(0, 119, 0, 0.5);
+    }
+  }
+}

@@ -1,9 +1,18 @@
-<!-- Простая навигация -->
+<!-- Адаптивная навигация -->
 <nav role="navigation" aria-label="Главная навигация">
+    <!-- Кнопка-гамбургер для мобильных -->
+    <button class="nav-toggle" aria-label="Открыть меню" aria-expanded="false">
+        <span class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+    </button>
+    
     <ul>
         <li><a href="/">Главная</a></li>
         
-        <li class="dropdown about-dropdown">
+        <li class="dropdown">
             <a href="/about" aria-haspopup="true" aria-expanded="false">О комитете</a>
             <div class="dropdown-content" role="menu">
                 <a href="/about/mission" role="menuitem">Наша миссия</a>

@@ -1,0 +1,29 @@
+<!-- Scripts partial -->
+
+<!-- Core scripts -->
+<script src="/js/core/app.js"></script>
+
+<!-- Component scripts -->
+<script src="/js/components/animations.js"></script>
+<script src="/js/components/navigation.js"></script>
+
+<!-- Page-specific scripts -->
+<% if (scripts && scripts.length > 0) { %>
+    <% scripts.forEach(script => { %>
+        <script src="<%= script %>"></script>
+    <% }) %>
+<% } %>
+
+<!-- Additional scripts -->
+<% if (locals.additionalScripts) { %>
+    <% additionalScripts.forEach(script => { %>
+        <script src="<%= script %>"></script>
+    <% }) %>
+<% } %>
+
+<!-- Inline scripts for page-specific functionality -->
+<% if (locals.inlineScript) { %>
+    <script>
+        <%- inlineScript %>
+    </script>
+<% } %>

@@ -1,0 +1,16 @@
+<!-- Hero Section Component -->
+<section class="hero-section fade-in delay-3" aria-labelledby="<%= locals.headingId || 'hero-heading' %>">
+    <h2 id="<%= locals.headingId || 'hero-heading' %>"><%= locals.title %></h2>
+    
+    <% if (locals.subtitle) { %>
+        <p class="hero-text"><%= subtitle %></p>
+    <% } %>
+    
+    <% if (locals.buttons && locals.buttons.length > 0) { %>
+        <div class="button-group" role="group" aria-label="<%= locals.buttonGroupLabel || 'Основные действия' %>">
+            <% locals.buttons.forEach(button => { %>
+                <%- include('./button', button) %>
+            <% }) %>
+        </div>
+    <% } %>
+</section>
