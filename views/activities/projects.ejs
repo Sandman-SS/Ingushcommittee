@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Проекты - Комитет Ингушской Независимости</title>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/css/main-fixed.css">
+    <link rel="stylesheet" href="/css/components/navigation.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Оставьте здесь только стили, специфичные для содержимого проектов,
@@ -174,8 +175,13 @@
 
     <div class="container">
         <header class="fade-in delay-1">
-            <h1>Проекты Комитета</h1>
+            <div class="logo">
+                <img src="/img/logo.png" alt="Логотип Комитета Ингушской Независимости">
+            </div>
+            <h1 class="site-title">Комитет Ингушской Независимости</h1>
         </header>
+
+        <%- include('../partials/navigation') %>
 
         <div class="page-content-wrapper fade-in delay-2">
 
@@ -233,5 +239,6 @@
     </div>
 
     <script src="/js/animations.js"></script>
+    <script src="/js/components/navigation.js"></script>
 </body>
 </html>

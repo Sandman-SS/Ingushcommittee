@@ -1,0 +1,441 @@
+/*
+ * Стили для страницы новостей
+ * Страница отображает новости из Telegram канала
+ */
+
+/* Описание страницы новостей */
+.news-description {
+    font-size: 1rem;
+    color: #8e8e8e;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 400;
+}
+
+/* Контейнер для новостей */
+.news-container {
+    column-count: 2;
+    column-gap: 2rem;
+    margin: 2rem auto;
+    max-width: 1320px;
+    padding: 0 1rem;
+}
+
+/* Карточка новости */
+.news-card {
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 8px;
+    padding: 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    border: 1px solid #dbdbdb;
+    break-inside: avoid;
+    margin-bottom: 2rem;
+    display: inline-block;
+    width: 100%;
+}
+
+/* Заголовок карточки (дата и источник) */
+.news-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    border-bottom: 1px solid #efefef;
+}
+
+.news-date {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #8e8e8e;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.news-date i {
+    color: #1b5e20;
+    font-size: 0.875rem;
+}
+
+/* Медиафайлы - контейнер с каруселью */
+.news-media {
+    margin: 0;
+    position: relative;
+    background: #000;
+    width: 100%;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+}
+
+.news-media-carousel {
+    display: flex;
+    transition: transform 0.3s ease;
+    height: 100%;
+}
+
+.news-photo,
+.news-video {
+    flex: 0 0 100%;
+    position: relative;
+    background: #000;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.news-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    transition: opacity 0.2s ease;
+}
+
+.news-photo:active img {
+    opacity: 0.9;
+}
+
+.news-video {
+    background: #000;
+}
+
+.news-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    background: #000;
+}
+
+/* Индикаторы карусели */
+.media-carousel-indicators {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+    z-index: 100;
+}
+
+.carousel-indicator {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transition: background 0.2s ease;
+}
+
+.carousel-indicator.active {
+    background: rgba(255, 255, 255, 1);
+}
+
+/* Кнопки навигации карусели */
+.carousel-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 100;
+    transition: background 0.2s ease;
+    font-size: 1rem;
+    color: #262626;
+}
+
+.carousel-nav-btn:hover {
+    background: rgba(255, 255, 255, 1);
+}
+
+.carousel-prev {
+    left: 12px;
+}
+
+.carousel-next {
+    right: 12px;
+}
+
+/* Нижняя часть карточки */
+.news-content {
+    padding: 12px 16px 16px;
+}
+
+/* Текст новости */
+.news-text {
+    font-size: 0.938rem;
+    line-height: 1.5;
+    color: #262626;
+    margin: 0 0 8px 0;
+    word-wrap: break-word;
+}
+
+.news-text p {
+    margin-bottom: 0.5rem;
+}
+
+.news-text p:last-child {
+    margin-bottom: 0;
+}
+
+.news-text a {
+    color: #00376b;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.news-text a:hover {
+    text-decoration: underline;
+}
+
+.news-text strong {
+    font-weight: 600;
+    color: #262626;
+}
+
+.news-text em {
+    font-style: italic;
+    color: #8e8e8e;
+}
+
+.news-text code {
+    background: #efefef;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.875em;
+}
+
+.news-text pre {
+    background: #efefef;
+    padding: 0.75rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin: 0.5rem 0;
+}
+
+/* Источник новости (канал Telegram) */
+.news-source {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 8px;
+    font-size: 0.875rem;
+    color: #8e8e8e;
+}
+
+.news-source i {
+    color: #0088cc;
+    font-size: 1rem;
+}
+
+.news-source a {
+    color: #00376b;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.news-source a:hover {
+    text-decoration: underline;
+}
+
+/* Сообщение об отсутствии новостей */
+.no-news {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    column-span: all;
+    margin-bottom: 2rem;
+}
+
+.no-news i {
+    font-size: 3rem;
+    color: #1b5e20;
+    margin-bottom: 1rem;
+}
+
+.no-news p {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+/* Контейнер для кнопки "Загрузить еще" */
+.load-more-container {
+    column-span: all;
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+#loadMoreBtn {
+    min-width: 200px;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+    .news-container {
+        max-width: 100%;
+        column-gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .news-container {
+        column-count: 1;
+        padding: 0;
+    }
+
+    .news-card {
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+        margin-bottom: 2.5rem;
+    }
+
+    .news-media {
+        aspect-ratio: 1/1;
+    }
+
+    .carousel-nav-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 0.875rem;
+    }
+
+    .news-description {
+        font-size: 0.938rem;
+    }
+
+    .no-news i {
+        font-size: 2rem;
+    }
+
+    .no-news p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .news-container {
+        margin: 1rem auto;
+    }
+
+    .news-card {
+        margin-bottom: 2rem;
+    }
+
+    .news-header {
+        padding: 12px;
+    }
+
+    .news-date {
+        font-size: 0.813rem;
+    }
+
+    .news-content {
+        padding: 10px 12px 12px;
+    }
+
+    .news-text {
+        font-size: 0.875rem;
+    }
+
+    .news-source {
+        font-size: 0.813rem;
+    }
+
+    .carousel-nav-btn {
+        width: 26px;
+        height: 26px;
+        font-size: 0.813rem;
+    }
+
+    .load-more-container {
+        margin: 1.5rem 0;
+    }
+
+    #loadMoreBtn {
+        min-width: 150px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Модальное окно для просмотра изображений */
+.media-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    animation: fadeIn 0.25s ease;
+}
+
+.media-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.media-modal-content {
+    max-width: 90%;
+    max-height: 90vh;
+    object-fit: contain;
+    animation: zoomIn 0.25s ease;
+}
+
+.media-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 300;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    line-height: 1;
+    padding: 0.5rem;
+    z-index: 10000;
+    opacity: 0.8;
+}
+
+.media-modal-close:hover {
+    opacity: 1;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+}

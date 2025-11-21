@@ -10,19 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         maxZoom: 18
     }).addTo(map);
     
-    // Добавление спутникового слоя
-    const satelliteLayer = L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
-        attribution: '&copy; Google Maps',
-        maxZoom: 20
-    });
-    
-    // Базовые слои для выбора
-    const baseLayers = {
-        "Карта": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map),
-        "Спутник": satelliteLayer
-    };
-    
-    L.control.layers(baseLayers, null, { position: 'topleft' }).addTo(map);
+    // Переключатель слоев убран - используем только основную карту
     
     // Создание иконок для различных типов объектов
     const cityIcon = L.divIcon({
@@ -667,8 +655,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // Добавляем города на карту
     cities.forEach(city => {
         const marker = L.marker(city.coords, {icon: cityIcon})
-            .bindPopup(createExtendedPopupContent(city));
-        
+            .bindPopup(createExtendedPopupContent(city), {
+                maxWidth: 250,
+                minWidth: 200,
+                autoPan: true,
+                autoPanPadding: [100, 100],
+                keepInView: true,
+                closeButton: true,
+                maxHeight: 400,
+                autoPanPaddingTopLeft: [100, 100],
+                autoPanPaddingBottomRight: [100, 100]
+            });
+
         citiesLayer.addLayer(marker);
         
         // Добавляем город в список
@@ -685,8 +683,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // Добавляем села на карту
     villages.forEach(village => {
         const marker = L.marker(village.coords, {icon: villageIcon})
-            .bindPopup(createExtendedPopupContent(village));
-        
+            .bindPopup(createExtendedPopupContent(village), {
+                maxWidth: 250,
+                minWidth: 200,
+                autoPan: true,
+                autoPanPadding: [100, 100],
+                keepInView: true,
+                closeButton: true,
+                maxHeight: 400,
+                autoPanPaddingTopLeft: [100, 100],
+                autoPanPaddingBottomRight: [100, 100]
+            });
+
         villagesLayer.addLayer(marker);
         
         // Добавляем село в список
@@ -703,8 +711,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // Добавляем культурные объекты на карту
     culturalSites.forEach(site => {
         const marker = L.marker(site.coords, {icon: culturalIcon})
-            .bindPopup(createExtendedPopupContent(site));
-        
+            .bindPopup(createExtendedPopupContent(site), {
+                maxWidth: 250,
+                minWidth: 200,
+                autoPan: true,
+                autoPanPadding: [100, 100],
+                keepInView: true,
+                closeButton: true,
+                maxHeight: 400,
+                autoPanPaddingTopLeft: [100, 100],
+                autoPanPaddingBottomRight: [100, 100]
+            });
+
         culturalLayer.addLayer(marker);
         
         // Добавляем объект в список
@@ -721,8 +739,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // Добавляем религиозные объекты на карту
     religiousSites.forEach(site => {
         const marker = L.marker(site.coords, {icon: religiousIcon})
-            .bindPopup(createExtendedPopupContent(site));
-        
+            .bindPopup(createExtendedPopupContent(site), {
+                maxWidth: 250,
+                minWidth: 200,
+                autoPan: true,
+                autoPanPadding: [100, 100],
+                keepInView: true,
+                closeButton: true,
+                maxHeight: 400,
+                autoPanPaddingTopLeft: [100, 100],
+                autoPanPaddingBottomRight: [100, 100]
+            });
+
         religiousLayer.addLayer(marker);
         
         // Добавляем объект в список

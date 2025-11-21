@@ -1,38 +1,48 @@
-<!-- Адаптивная навигация -->
-<nav role="navigation" aria-label="Главная навигация">
-    <!-- Кнопка-гамбургер для мобильных -->
-    <button class="nav-toggle" aria-label="Открыть меню" aria-expanded="false">
-        <span class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </span>
-    </button>
-    
-    <ul>
-        <li><a href="/">Главная</a></li>
-        
-        <li class="dropdown">
-            <a href="/about" aria-haspopup="true" aria-expanded="false">О комитете</a>
-            <div class="dropdown-content" role="menu">
-                <a href="/about/mission" role="menuitem">Наша миссия</a>
-                <a href="/about/history" role="menuitem">История</a>
-                <a href="/about/goals" role="menuitem">Наши цели</a>
-            </div>
-        </li>
-        
-        <li class="dropdown">
-            <a href="/activities" aria-haspopup="true" aria-expanded="false">Деятельность</a>
-            <div class="dropdown-content" role="menu">
-                <a href="/activities/projects" role="menuitem">Проекты</a>
-                <a href="/activities/culture" role="menuitem">Культура</a>
-                <a href="/activities/education" role="menuitem">Образование</a>
-                <a href="/activities/rights" role="menuitem">Права</a>
-                <a href="/activities/international" role="menuitem">Международное сотрудничество</a>
-            </div>
+<!-- Navigation Component -->
+<!-- Mobile Menu Toggle -->
+<button class="main-nav__mobile-toggle" aria-label="Открыть меню" aria-expanded="false">
+    <span class="main-nav__hamburger"></span>
+    <span class="main-nav__hamburger"></span>
+    <span class="main-nav__hamburger"></span>
+</button>
+
+<nav class="main-nav" role="navigation" aria-label="Главная навигация">
+    <!-- Navigation Menu -->
+    <ul class="main-nav__menu">
+        <li class="main-nav__item">
+            <a href="/" class="main-nav__link">Главная</a>
         </li>
 
-        <li><a href="/map">Карта</a></li>
-        <li><a href="/contact">Контакты</a></li>
+        <li class="main-nav__item main-nav__item--dropdown">
+            <a href="/about" class="main-nav__link">О комитете</a>
+            <ul class="main-nav__dropdown">
+                <li><a href="/about/mission" class="main-nav__dropdown-link">Наша миссия</a></li>
+                <li><a href="/about/history" class="main-nav__dropdown-link">История</a></li>
+                <li><a href="/about/goals" class="main-nav__dropdown-link">Наши цели</a></li>
+            </ul>
+        </li>
+
+        <li class="main-nav__item main-nav__item--dropdown">
+            <a href="/activities" class="main-nav__link">Деятельность</a>
+            <ul class="main-nav__dropdown">
+                <li><a href="/activities/projects" class="main-nav__dropdown-link">Проекты</a></li>
+                <li><a href="/activities/culture" class="main-nav__dropdown-link">Культура</a></li>
+                <li><a href="/activities/education" class="main-nav__dropdown-link">Образование</a></li>
+                <li><a href="/activities/rights" class="main-nav__dropdown-link">Права</a></li>
+                <li><a href="/activities/international" class="main-nav__dropdown-link">Международное сотрудничество</a></li>
+            </ul>
+        </li>
+
+        <li class="main-nav__item">
+            <a href="/news" class="main-nav__link">Новости</a>
+        </li>
+
+        <li class="main-nav__item">
+            <a href="/map" class="main-nav__link">Карта</a>
+        </li>
+
+        <li class="main-nav__item">
+            <a href="/contact" class="main-nav__link">Контакты</a>
+        </li>
     </ul>
 </nav>

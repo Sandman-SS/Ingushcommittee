@@ -15,6 +15,7 @@ function generateSitemap(baseUrl = 'https://ingush-committee.org') {
         { loc: '/activities/education', priority: '0.8', changefreq: 'weekly' },
         { loc: '/activities/rights', priority: '0.8', changefreq: 'weekly' },
         { loc: '/activities/international', priority: '0.8', changefreq: 'weekly' },
+        { loc: '/news', priority: '0.9', changefreq: 'daily' },
         { loc: '/map', priority: '0.7', changefreq: 'monthly' },
         { loc: '/contact', priority: '0.8', changefreq: 'monthly' }
     ];

@@ -188,6 +188,9 @@ app.use(
 // Импорт генератора sitemap
 const { generateSitemap } = require('./utils/sitemap-generator');
 
+// Импорт модуля для работы с новостями
+const { loadPosts } = require('./utils/data-storage');
+
 // Маршрут для sitemap.xml
 app.get('/sitemap.xml', (req, res) => {
     const sitemap = generateSitemap();
@@ -366,6 +369,46 @@ app.get('/thank-you', (req, res) => {
 // Раздел "Карта"
 app.get('/map', (req, res) => {
     res.render('map');
+});
+
+// Раздел "Новости"
+app.get('/news', (req, res) => {
+    try {
+        const posts = loadPosts();
+        res.render('news', { posts });
+    } catch (error) {
+        log.error('Error loading news page', { error: error.message });
+        res.status(500).render('500');
+    }
+});
+
+// API для получения новостей (для пагинации и AJAX)
+app.get('/api/news', (req, res) => {
+    try {
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 10;
+        const posts = loadPosts();
+
+        // Пагинация
+        const startIndex = (page - 1) * limit;
+        const endIndex = startIndex + limit;
+        const paginatedPosts = posts.slice(startIndex, endIndex);
+
+        res.json({
+            success: true,
+            page,
+            limit,
+            total: posts.length,
+            totalPages: Math.ceil(posts.length / limit),
+            posts: paginatedPosts
+        });
+    } catch (error) {
+        log.error('Error fetching news via API', { error: error.message });
+        res.status(500).json({
+            success: false,
+            message: 'Ошибка при загрузке новостей'
+        });
+    }
 });
 
 // --- ОБРАБОТКА ОШИБОК ---

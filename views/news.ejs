@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новости - Комитет Ингушской Независимости</title>
+    <link rel="stylesheet" href="/css/main-fixed.css">
+    <link rel="stylesheet" href="/css/components/navigation.css">
+    <link rel="stylesheet" href="/css/pages/news.css">
+    <!-- Добавляем Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Navigation script -->
+    <script src="/js/components/navigation.js"></script>
+</head>
+<body>
+    <!-- Фоновое изображение с горами -->
+    <div class="page-background"></div>
+
+    <div class="container">
+        <header class="fade-in delay-1">
+            <div class="logo">
+                <img src="/img/logo.png" alt="Логотип Комитета Ингушской Независимости">
+            </div>
+            <h1 class="site-title">Комитет Ингушской Независимости</h1>
+        </header>
+
+        <%- include('./partials/navigation') %>
+
+        <main>
+            <section class="content fade-in delay-3">
+                <h2><i class="fas fa-newspaper"></i> Новости</h2>
+                <p class="news-description">Последние новости и обновления от Комитета Ингушской Независимости</p>
+
+                <div class="news-container fade-in delay-4">
+                    <% if (posts && posts.length > 0) { %>
+                        <% posts.forEach(function(post, index) { %>
+                            <article class="news-card fade-in delay-<%= Math.min(5 + index, 10) %>">
+                                <!-- Заголовок карточки -->
+                                <div class="news-header">
+                                    <div class="news-date">
+                                        <i class="far fa-calendar-alt"></i>
+                                        <%= new Date(post.date).toLocaleDateString('ru-RU', {
+                                            year: 'numeric',
+                                            month: 'long',
+                                            day: 'numeric',
+                                            hour: '2-digit',
+                                            minute: '2-digit'
+                                        }) %>
+                                    </div>
+                                </div>
+
+                                <!-- Медиафайлы (фото/видео) с каруселью -->
+                                <% if (post.media && post.media.length > 0) { %>
+                                    <div class="news-media" data-post-index="<%= index %>">
+                                        <div class="news-media-carousel">
+                                            <% post.media.forEach(function(mediaUrl, mediaIndex) { %>
+                                                <% const mediaType = post.mediaTypes && post.mediaTypes[mediaIndex] ? post.mediaTypes[mediaIndex] : 'photo'; %>
+
+                                                <% if (mediaType === 'photo') { %>
+                                                    <div class="news-photo" data-media-url="<%= mediaUrl %>">
+                                                        <img src="<%= mediaUrl %>" alt="Фото новости" loading="lazy">
+                                                    </div>
+                                                <% } else if (mediaType === 'video') { %>
+                                                    <div class="news-video">
+                                                        <video controls preload="metadata">
+                                                            <source src="<%= mediaUrl %>" type="video/mp4">
+                                                            Ваш браузер не поддерживает видео.
+                                                        </video>
+                                                    </div>
+                                                <% } %>
+                                            <% }); %>
+                                        </div>
+
+                                        <!-- Кнопки навигации (только если больше 1 медиа) -->
+                                        <% if (post.media.length > 1) { %>
+                                            <button class="carousel-nav-btn carousel-prev" data-direction="prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="carousel-nav-btn carousel-next" data-direction="next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+
+                                            <!-- Индикаторы -->
+                                            <div class="media-carousel-indicators">
+                                                <% for (let i = 0; i < post.media.length; i++) { %>
+                                                    <span class="carousel-indicator <%= i === 0 ? 'active' : '' %>"></span>
+                                                <% } %>
+                                            </div>
+                                        <% } %>
+                                    </div>
+                                <% } %>
+
+                                <!-- Контент карточки -->
+                                <div class="news-content">
+                                    <!-- Текст новости -->
+                                    <% if (post.text) { %>
+                                        <div class="news-text">
+                                            <%- post.text %>
+                                        </div>
+                                    <% } %>
+
+                                    <!-- Информация о канале -->
+                                    <% if (post.channelUsername) { %>
+                                        <div class="news-source">
+                                            <i class="fab fa-telegram"></i>
+                                            <a href="https://t.me/<%= post.channelUsername %>" target="_blank" rel="noopener noreferrer">
+                                                @<%= post.channelUsername %>
+                                            </a>
+                                        </div>
+                                    <% } %>
+                                </div>
+                            </article>
+                        <% }); %>
+                    <% } else { %>
+                        <!-- Сообщение когда нет новостей -->
+                        <div class="no-news">
+                            <i class="fas fa-info-circle"></i>
+                            <p>Новости пока отсутствуют. Следите за обновлениями!</p>
+                        </div>
+                    <% } %>
+                </div>
+
+                <!-- Кнопка "Загрузить еще" (для будущей пагинации) -->
+                <% if (posts && posts.length >= 10) { %>
+                    <div class="load-more-container">
+                        <button id="loadMoreBtn" class="btn btn-primary" data-page="2">
+                            <i class="fas fa-arrow-down"></i> Загрузить еще
+                        </button>
+                    </div>
+                <% } %>
+            </section>
+        </main>
+
+        <%- include('./partials/footer') %>
+    </div>
+
+    <!-- Модальное окно для просмотра изображений -->
+    <div id="mediaModal" class="media-modal">
+        <span class="media-modal-close">&times;</span>
+        <img class="media-modal-content" id="modalImage" alt="Полный размер">
+    </div>
+
+    <!-- Скрипт для пагинации (загрузка дополнительных новостей) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            if (!loadMoreBtn) return;
+
+            loadMoreBtn.addEventListener('click', async function() {
+                const page = parseInt(this.getAttribute('data-page'));
+
+                try {
+                    loadMoreBtn.disabled = true;
+                    loadMoreBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Загрузка...';
+
+                    const response = await fetch(`/api/news?page=${page}&limit=10`);
+                    const data = await response.json();
+
+                    if (data.success && data.posts.length > 0) {
+                        const newsContainer = document.querySelector('.news-container');
+                        const currentPostCount = newsContainer.querySelectorAll('.news-card').length;
+
+                        data.posts.forEach((post, index) => {
+                            const article = createNewsArticle(post, currentPostCount + index);
+                            newsContainer.appendChild(article);
+                        });
+
+                        // Обновляем номер страницы
+                        if (page < data.totalPages) {
+                            this.setAttribute('data-page', page + 1);
+                            loadMoreBtn.disabled = false;
+                            loadMoreBtn.innerHTML = '<i class="fas fa-arrow-down"></i> Загрузить еще';
+                        } else {
+                            // Все новости загружены
+                            this.remove();
+                        }
+                    } else {
+                        this.remove();
+                    }
+                } catch (error) {
+                    console.error('Ошибка загрузки новостей:', error);
+                    loadMoreBtn.disabled = false;
+                    loadMoreBtn.innerHTML = '<i class="fas fa-exclamation-circle"></i> Ошибка загрузки';
+                }
+            });
+        });
+
+        function createNewsArticle(post, postIndex) {
+            const article = document.createElement('article');
+            article.className = 'news-card fade-in';
+
+            // Дата
+            const date = new Date(post.date);
+            const dateStr = date.toLocaleDateString('ru-RU', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+
+            let html = `
+                <div class="news-header">
+                    <div class="news-date">
+                        <i class="far fa-calendar-alt"></i> ${dateStr}
+                    </div>
+                </div>
+            `;
+
+            // Медиа с каруселью
+            if (post.media && post.media.length > 0) {
+                html += `<div class="news-media" data-post-index="${postIndex}">
+                    <div class="news-media-carousel">`;
+
+                post.media.forEach((mediaUrl, index) => {
+                    const mediaType = post.mediaTypes && post.mediaTypes[index] ? post.mediaTypes[index] : 'photo';
+
+                    if (mediaType === 'photo') {
+                        html += `
+                            <div class="news-photo" data-media-url="${mediaUrl}">
+                                <img src="${mediaUrl}" alt="Фото новости" loading="lazy">
+                            </div>
+                        `;
+                    } else if (mediaType === 'video') {
+                        html += `
+                            <div class="news-video">
+                                <video controls preload="metadata">
+                                    <source src="${mediaUrl}" type="video/mp4">
+                                    Ваш браузер не поддерживает видео.
+                                </video>
+                            </div>
+                        `;
+                    }
+                });
+
+                html += '</div>';
+
+                // Навигация и индикаторы (если больше 1 медиа)
+                if (post.media.length > 1) {
+                    html += `
+                        <button class="carousel-nav-btn carousel-prev" data-direction="prev">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="carousel-nav-btn carousel-next" data-direction="next">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <div class="media-carousel-indicators">
+                    `;
+
+                    for (let i = 0; i < post.media.length; i++) {
+                        html += `<span class="carousel-indicator ${i === 0 ? 'active' : ''}"></span>`;
+                    }
+
+                    html += '</div>';
+                }
+
+                html += '</div>';
+            }
+
+            // Контент
+            html += '<div class="news-content">';
+
+            // Текст
+            if (post.text) {
+                html += `<div class="news-text">${post.text}</div>`;
+            }
+
+            // Источник
+            if (post.channelUsername) {
+                html += `
+                    <div class="news-source">
+                        <i class="fab fa-telegram"></i>
+                        <a href="https://t.me/${post.channelUsername}" target="_blank" rel="noopener noreferrer">
+                            @${post.channelUsername}
+                        </a>
+                    </div>
+                `;
+            }
+
+            html += '</div>';
+
+            article.innerHTML = html;
+            return article;
+        }
+
+        // Модальное окно для изображений
+        const modal = document.getElementById('mediaModal');
+        const modalImg = document.getElementById('modalImage');
+        const closeBtn = document.querySelector('.media-modal-close');
+
+        // Открытие модального окна при клике на изображение
+        document.addEventListener('click', function(e) {
+            const photoElement = e.target.closest('.news-photo');
+            if (photoElement) {
+                const imgSrc = photoElement.getAttribute('data-media-url');
+                if (imgSrc) {
+                    modal.classList.add('active');
+                    modalImg.src = imgSrc;
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+        });
+
+        // Закрытие модального окна
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        closeBtn.addEventListener('click', closeModal);
+
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Закрытие по нажатию Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        // Карусель для медиа
+        const carouselStates = new Map();
+
+        function initCarousel(mediaContainer) {
+            const postIndex = mediaContainer.getAttribute('data-post-index');
+            if (!carouselStates.has(postIndex)) {
+                carouselStates.set(postIndex, 0);
+            }
+
+            const prevBtn = mediaContainer.querySelector('.carousel-prev');
+            const nextBtn = mediaContainer.querySelector('.carousel-next');
+
+            if (prevBtn && nextBtn) {
+                prevBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    navigateCarousel(mediaContainer, -1);
+                });
+
+                nextBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    navigateCarousel(mediaContainer, 1);
+                });
+            }
+        }
+
+        function navigateCarousel(mediaContainer, direction) {
+            const postIndex = mediaContainer.getAttribute('data-post-index');
+            const carousel = mediaContainer.querySelector('.news-media-carousel');
+            const items = carousel.children;
+            const indicators = mediaContainer.querySelectorAll('.carousel-indicator');
+
+            let currentIndex = carouselStates.get(postIndex) || 0;
+            currentIndex += direction;
+
+            // Зацикливание
+            if (currentIndex < 0) {
+                currentIndex = items.length - 1;
+            } else if (currentIndex >= items.length) {
+                currentIndex = 0;
+            }
+
+            carouselStates.set(postIndex, currentIndex);
+
+            // Анимация
+            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+            // Обновление индикаторов
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        // Инициализация каруселей для существующих постов
+        document.querySelectorAll('.news-media').forEach(initCarousel);
+
+        // Отслеживание новых постов
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                mutation.addedNodes.forEach((node) => {
+                    if (node.nodeType === 1 && node.classList.contains('news-card')) {
+                        const mediaContainer = node.querySelector('.news-media');
+                        if (mediaContainer) {
+                            initCarousel(mediaContainer);
+                        }
+                    }
+                });
+            });
+        });
+
+        const newsContainer = document.querySelector('.news-container');
+        if (newsContainer) {
+            observer.observe(newsContainer, { childList: true });
+        }
+    </script>
+</body>
+</html>

@@ -7,11 +7,12 @@
     <meta name="description" content="Интерактивная карта земель Ингушетии с культурными и религиозными объектами">
     <meta name="keywords" content="Ингушетия, Галгайче, культурные объекты, религиозные объекты, города и села">
     <link rel="stylesheet" href="/css/main-fixed.css">
+    <link rel="stylesheet" href="/css/components/navigation.css">
     <!-- Добавляем Font Awesome для иконок -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Navigation fix script -->
-    <script src="/js/navigation-fix.js"></script>
+
+    <!-- Navigation script -->
+    <script src="/js/components/navigation.js"></script>
     <!-- Подключаем Leaflet CSS и JS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" 
@@ -30,8 +31,9 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             margin: 20px 0;
             position: relative;
+            overflow: hidden;
         }
-        
+
         #map {
             width: 100%;
             height: 100%;
@@ -70,22 +72,36 @@
             margin-right: 10px;
         }
         
+        /* Всплывающие окна должны быть поверх карты */
+        .leaflet-popup-pane {
+            z-index: 700 !important;
+        }
+
+        .leaflet-popup {
+            z-index: 700 !important;
+        }
+
+        .leaflet-popup-content-wrapper {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
         .leaflet-popup-content {
             font-size: 14px;
             line-height: 1.5;
         }
-        
+
         .leaflet-popup-content h3 {
             color: darkgreen;
             margin-top: 0;
             margin-bottom: 8px;
             font-size: 16px;
         }
-        
+
         .popup-content {
-            max-width: 280px;
+            max-width: 250px;
         }
-        
+
         .popup-image {
             width: 100%;
             height: auto;
@@ -378,7 +394,6 @@
     </div>
     
     <script src="/js/animations.js"></script>
-    <script src="/js/navigation.js"></script>
     <script src="/js/interactive-map.js"></script>
     <script>
         // Скрипт для управления вкладками

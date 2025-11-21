@@ -6,6 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
+    "news-bot": "python3 telegram-news-bot.py",
+    "news-bot:start": "./start-telegram-bot.sh",
     "add-news": "node utils/add-news-manually.js",
     "check-bot": "node utils/check-bot-permissions.js",
     "export-history": "node utils/export-telegram-history.js",
