@@ -9,6 +9,160 @@
     <link rel="stylesheet" href="/css/main-fixed.css">
     <link rel="stylesheet" href="/css/components/navigation.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .intro-text {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto 48px auto;
+            line-height: 1.8;
+        }
+
+        /* Баннер */
+        .international-banner {
+            background: linear-gradient(135deg, #1a472a 0%, #0d3319 100%);
+            color: white;
+            padding: 48px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 48px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .international-banner h3 {
+            font-size: 1.8rem;
+            margin: 0;
+            font-weight: 600;
+            color: white !important;
+        }
+
+        .international-banner p {
+            color: white !important;
+            margin: 0;
+            line-height: 1.7;
+            max-width: 700px;
+        }
+
+        .international-banner * {
+            color: white !important;
+        }
+
+        .banner-icon i {
+            color: white !important;
+        }
+
+        /* Основной контент */
+        .cooperation-areas {
+            margin-bottom: 64px;
+        }
+
+        .cooperation-areas h3 {
+            color: #1a472a;
+            font-size: 2rem;
+            margin-bottom: 32px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        /* Сетка карточек */
+        .cooperation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 64px;
+        }
+
+        .cooperation-card {
+            background: white;
+            border-radius: 12px;
+            padding: 28px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .cooperation-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+
+        .cooperation-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1a472a 0%, #0d3319 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .cooperation-icon i {
+            color: white !important;
+        }
+
+        .cooperation-card h4 {
+            color: #1a472a;
+            font-size: 1.3rem;
+            margin: 0 0 16px 0;
+            font-weight: 600;
+        }
+
+        .cooperation-card > p {
+            color: #555;
+            line-height: 1.7;
+            margin: 0 0 20px 0;
+        }
+
+        .cooperation-details {
+            width: 100%;
+            text-align: left;
+        }
+
+        .cooperation-details ul {
+            list-style-type: disc;
+            margin: 0;
+            padding-left: 24px;
+        }
+
+        .cooperation-details ul li {
+            margin-bottom: 12px;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .cooperation-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .international-banner {
+                padding: 32px 24px;
+            }
+
+            .international-banner h3 {
+                font-size: 1.4rem;
+            }
+
+            .cooperation-card {
+                padding: 24px;
+            }
+
+            .cooperation-details ul {
+                padding-left: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="page-background"></div>
@@ -79,23 +233,24 @@
                             <h4>Информационная дипломатия</h4>
                             <p>Комитет проводит активную информационную работу на международном уровне, рассказывая о культуре, истории и современном положении ингушского народа. Эта деятельность направлена на формирование объективного представления об ингушском народе в мировом сообществе.</p>
                             <div class="cooperation-details">
-                                </div>
+                                <ul>
+                                    <li>Публикация материалов на международных платформах и в СМИ</li>
+                                    <li>Проведение информационных кампаний в социальных сетях</li>
+                                    <li>Создание контента на различных языках для широкой аудитории</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
         </main>
+
+        <footer class="fade-in delay-4">
+            &copy; 2025 Комитет Ингушской Независимости
+        </footer>
     </div>
 
-    <script>
-        // Пример JavaScript для активации анимации fade-in при загрузке страницы
-        document.addEventListener('DOMContentLoaded', function() {
-            const fadeElements = document.querySelectorAll('.fade-in');
-            fadeElements.forEach(element => {
-                element.classList.add('active');
-            });
-        });
-    </script>
+    <script src="/js/animations.js"></script>
     <script src="/js/components/navigation.js"></script>
 </body>
 </html>

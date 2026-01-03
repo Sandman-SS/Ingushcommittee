@@ -4,28 +4,179 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Контакты - Комитет Ингушской Независимости</title>
-    
+
     <%- include('./partials/seo-meta', {
         title: 'Контакты - Комитет Ингушской Независимости',
         description: 'Свяжитесь с Комитетом Ингушской Независимости. Наши официальные каналы в Telegram и YouTube.',
         keywords: 'контакты, Ингушетия, комитет, Telegram, YouTube, связь',
         req: typeof req !== 'undefined' ? req : { originalUrl: '/contact' }
     }) %>
-    
+
     <link rel="stylesheet" href="/css/main-fixed.css">
     <link rel="stylesheet" href="/css/components/navigation.css">
-    <!-- Добавляем Font Awesome для иконок -->
+    <link rel="stylesheet" href="/css/pages/contact.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <%- include('./partials/google-analytics') %>
 
     <!-- Navigation script -->
     <script src="/js/components/navigation.js"></script>
+
+    <style>
+        .social-icon-large svg {
+            width: 50px;
+            height: 50px;
+            fill: white;
+        }
+
+        .social-card {
+            display: flex;
+            align-items: center;
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .social-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .social-icon-large {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-right: 24px;
+            flex-shrink: 0;
+        }
+
+        .social-icon-large.telegram {
+            background: linear-gradient(135deg, #2AABEE 0%, #229ED9 100%);
+        }
+
+        .social-icon-large.youtube {
+            background: linear-gradient(135deg, #FF0000 0%, #CC0000 100%);
+        }
+
+        .social-info {
+            flex: 1;
+        }
+
+        .social-info h3 {
+            margin: 0 0 8px 0;
+            font-size: 1.25rem;
+            color: #1a472a;
+        }
+
+        .social-info p {
+            margin: 0 0 16px 0;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: #1a472a;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background: #0d3319;
+        }
+
+        .contact-form-section {
+            background: white;
+            border-radius: 12px;
+            padding: 32px;
+            margin-top: 32px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .contact-form-section h3 {
+            color: #1a472a;
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            max-width: 100%;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #1a472a;
+        }
+
+        .required {
+            color: #d32f2f;
+        }
+
+        .form-note {
+            margin-top: 16px;
+            padding: 12px;
+            background: #e8f5e9;
+            border-left: 4px solid #1a472a;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .form-note a {
+            color: #1a472a;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .social-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+            }
+
+            .social-icon-large {
+                margin-right: 0;
+                margin-bottom: 16px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Фоновое изображение с горами -->
     <div class="page-background"></div>
-    
+
     <div class="container">
         <header class="fade-in delay-1">
             <div class="logo">
@@ -33,102 +184,106 @@
             </div>
             <h1 class="site-title">Комитет Ингушской Независимости</h1>
         </header>
-        
+
         <%- include('./partials/navigation') %>
-        
+
         <main>
             <section class="content fade-in delay-3">
                 <h2>Контакты</h2>
                 <p>Свяжитесь с нами через наши официальные каналы:</p>
-                
-                <!-- Улучшенный раздел с социальными сетями -->
+
                 <div class="social-links-section fade-in delay-4">
+                    <!-- Основной канал Telegram -->
                     <div class="social-card">
                         <div class="social-icon-large telegram">
-                            <i class="fab fa-telegram fa-3x"></i>
+                            <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M120,0 C53.8,0 0,53.8 0,120 C0,186.2 53.8,240 120,240 C186.2,240 240,186.2 240,120 C240,53.8 186.2,0 120,0 Z M168.6,82.4 C166.8,101.7 158.8,146.5 154.7,166.9 C153,175.8 149.6,178.8 146.3,179.1 C139.1,179.8 133.4,174.2 126.1,169.4 C114.4,161.6 107.9,156.8 96.6,149.2 C83.6,140.5 92.2,135.7 99.5,128.2 C101.4,126.3 133.1,97.7 133.7,95.2 C133.8,94.9 133.9,93.7 133.2,93.1 C132.5,92.5 131.5,92.7 130.7,92.9 C129.6,93.1 111.5,105.3 76.4,129.5 C71.2,133.2 66.5,135 62.4,134.9 C57.9,134.8 49.2,132.3 42.7,130.2 C34.7,127.6 28.4,126.2 29,121.9 C29.3,119.6 32.6,117.3 38.9,114.9 C76.8,98.2 101.8,87.1 113.9,81.6 C149.8,66.3 157.2,63.5 162.3,63.4 C163.5,63.4 166.2,63.7 168,65.2 C169.5,66.4 169.9,68.1 170.1,69.3 C169.9,70.3 170.3,73.7 168.6,82.4 Z"/>
+                            </svg>
                         </div>
                         <div class="social-info">
                             <h3>Основной канал Комитета Ингушской Независимости</h3>
                             <p>Подписывайтесь на наш Telegram канал для получения актуальных обновлений.</p>
-                            <a href="https://t.me/ingcommitte" target="_blank" class="btn btn-primary btn-icon">
+                            <a href="https://t.me/ingcommitte" target="_blank" class="btn">
                                 <i class="fas fa-external-link-alt"></i> Перейти в Telegram
                             </a>
                         </div>
                     </div>
 
-                     <div class="social-links-section fade-in delay-4">
+                    <!-- Департамент Правозащиты -->
                     <div class="social-card">
                         <div class="social-icon-large telegram">
-                            <i class="fab fa-telegram fa-3x"></i>
+                            <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M120,0 C53.8,0 0,53.8 0,120 C0,186.2 53.8,240 120,240 C186.2,240 240,186.2 240,120 C240,53.8 186.2,0 120,0 Z M168.6,82.4 C166.8,101.7 158.8,146.5 154.7,166.9 C153,175.8 149.6,178.8 146.3,179.1 C139.1,179.8 133.4,174.2 126.1,169.4 C114.4,161.6 107.9,156.8 96.6,149.2 C83.6,140.5 92.2,135.7 99.5,128.2 C101.4,126.3 133.1,97.7 133.7,95.2 C133.8,94.9 133.9,93.7 133.2,93.1 C132.5,92.5 131.5,92.7 130.7,92.9 C129.6,93.1 111.5,105.3 76.4,129.5 C71.2,133.2 66.5,135 62.4,134.9 C57.9,134.8 49.2,132.3 42.7,130.2 C34.7,127.6 28.4,126.2 29,121.9 C29.3,119.6 32.6,117.3 38.9,114.9 C76.8,98.2 101.8,87.1 113.9,81.6 C149.8,66.3 157.2,63.5 162.3,63.4 C163.5,63.4 166.2,63.7 168,65.2 C169.5,66.4 169.9,68.1 170.1,69.3 C169.9,70.3 170.3,73.7 168.6,82.4 Z"/>
+                            </svg>
                         </div>
                         <div class="social-info">
                             <h3>Департамент Правозащиты Комитета Ингушской Независимости</h3>
                             <p>Подписывайтесь на наш Telegram канал для получения актуальных обновлений.</p>
-                            <a href="https://t.me/DHR_BAQO" target="_blank" class="btn btn-primary btn-icon">
+                            <a href="https://t.me/DHR_BAQO" target="_blank" class="btn">
                                 <i class="fas fa-external-link-alt"></i> Перейти в Telegram
                             </a>
                         </div>
                     </div>
-                    
+
+                    <!-- YouTube канал -->
                     <div class="social-card">
                         <div class="social-icon-large youtube">
-                            <i class="fab fa-youtube fa-3x"></i>
+                            <svg viewBox="0 0 461.001 461.001" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M365.257,67.393H95.744C42.866,67.393,0,110.259,0,163.137v134.728c0,52.878,42.866,95.744,95.744,95.744h269.513c52.878,0,95.744-42.866,95.744-95.744V163.137C461.001,110.259,418.135,67.393,365.257,67.393z M300.506,237.056l-126.06,60.123c-3.359,1.602-7.239-0.847-7.239-4.568V168.607c0-3.774,3.982-6.22,7.348-4.514l126.06,63.881C304.363,229.873,304.298,235.248,300.506,237.056z"/>
+                            </svg>
                         </div>
                         <div class="social-info">
                             <h3>YouTube канал</h3>
                             <p>Смотрите наши видеоматериалы, интервью и репортажи на нашем YouTube канале.</p>
-                            <a href="https://www.youtube.com/@ingcommittee" target="_blank" class="btn btn-glow btn-icon">
+                            <a href="https://www.youtube.com/@ingcommittee" target="_blank" class="btn">
                                 <i class="fas fa-external-link-alt"></i> Перейти на YouTube
                             </a>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Дополнительная информация -->
-                <div class="contact-info fade-in delay-4">
-                    <h3>Вопросы и предложения</h3>
-                    <p>По всем вопросам и предложениям вы можете связаться с нами через наши социальные сети. Мы стараемся отвечать максимально оперативно.</p>
-                </div>
-                
+
                 <!-- Форма обратной связи -->
                 <div class="contact-form-section fade-in delay-5">
-                    <h3>Оставьте сообщение</h3>
+                    <h3>Вопросы и предложения</h3>
+                    <p>По всем вопросам и предложениям вы можете связаться с нами через наши социальные сети. Мы стараемся отвечать максимально оперативно.</p>
+
+                    <h3 style="margin-top: 32px;">Оставьте сообщение</h3>
                     <p>Напишите нам ваши пожелания или вопросы. Для оперативной связи рекомендуем использовать наши каналы в Telegram.</p>
-                    
+
                     <form id="contactForm" action="/submit-contact" method="POST" class="contact-form">
                         <div class="form-group">
                             <label for="name">Ваше имя <span class="required">*</span></label>
                             <input type="text" id="name" name="name" required aria-required="true" placeholder="Введите ваше имя">
                             <span class="error-message" id="name-error"></span>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="message">Сообщение <span class="required">*</span></label>
                             <textarea id="message" name="message" rows="5" required aria-required="true" placeholder="Введите ваше сообщение"></textarea>
                             <span class="error-message" id="message-error"></span>
                         </div>
-                        
+
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-icon">
+                            <button type="submit" class="btn">
                                 <i class="fas fa-paper-plane"></i> Отправить
                             </button>
                         </div>
-                        
+
                         <div id="form-status" class="form-status"></div>
-                        
+
                         <p class="form-note">
-                            <i class="fas fa-info-circle"></i> 
-                            Ваше сообщение будет сохранено. Для быстрого ответа напишите нам в 
+                            <i class="fas fa-info-circle"></i>
+                            Ваше сообщение будет сохранено. Для быстрого ответа напишите нам в
                             <a href="https://t.me/ingcommitte" target="_blank">Telegram</a>
                         </p>
                     </form>
                 </div>
             </section>
         </main>
-        
+
         <%- include('./partials/footer') %>
     </div>
-    
+
     <script src="/js/form-validation.js"></script>
 </body>
 </html>

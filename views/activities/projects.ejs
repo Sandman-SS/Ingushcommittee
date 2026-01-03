@@ -138,6 +138,10 @@
             background-color: #218838; /* Темнее зеленый при наведении */
         }
 
+        /* Скрываем sidebar на десктопе */
+        .sidebar {
+            display: none;
+        }
 
         /* Медиа-запрос для адаптивности */
         @media (max-width: 768px) {
@@ -147,6 +151,7 @@
             }
 
             .sidebar {
+                display: block;
                 width: 100%;
                 margin-bottom: 20px;
                 padding: 10px 20px;

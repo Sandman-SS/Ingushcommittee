@@ -14,6 +14,70 @@
     <link rel="stylesheet" href="/css/main-fixed.css">
     <link rel="stylesheet" href="/css/components/navigation.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .history-content {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .history-block {
+            background: white;
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            align-items: flex-start;
+            gap: 24px;
+        }
+
+        .history-block:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .history-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            min-width: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1a472a 0%, #0d3319 100%);
+            color: white;
+            font-size: 24px;
+        }
+
+        .history-block p {
+            margin: 0;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #333;
+            padding-top: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .history-block {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 24px;
+            }
+
+            .history-icon {
+                margin-bottom: 16px;
+            }
+
+            .history-block p {
+                padding-top: 0;
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="page-background"></div>
@@ -31,74 +95,30 @@
         <main>
             <section class="content fade-in delay-3">
                 <h2>История Комитета</h2>
-                <p class="intro-text">Комитет Ингушской Независимости был создан в 2022 году в целях борьбы за независимость Республики и защиты ингушского народа от внешних политических угроз.</p>
-                
-                <div class="timeline fade-in delay-4">
-                    <div class="timeline-item">
-                        <div class="timeline-date">
-                            <span>Первый этап</span>
-                            <div class="timeline-dot"></div>
+
+                <div class="history-content fade-in delay-4">
+                    <div class="history-block">
+                        <div class="history-icon">
+                            <i class="fas fa-flag"></i>
                         </div>
-                        <div class="timeline-content">
-                            <h3>Основание Комитета</h3>
-                            <p>Комитет был основан группой ингушских активистов, объединенных идеей сохранения культурного наследия и защиты интересов народа, в частности добиться выхода из состава оккупацинной российской власти. В этот период были заложены основные принципы работы и определены ключевые направления деятельности.</p>
-                        </div>
+                        <p>Основан ингушскими активистами в 2022 году</p>
                     </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-date">
-                            <span>Второй этап</span>
-                            <div class="timeline-dot"></div>
+
+                    <div class="history-block">
+                        <div class="history-icon">
+                            <i class="fas fa-file-signature"></i>
                         </div>
-                        <div class="timeline-content">
-                            <h3>Развитие и укрепление</h3>
-                            <p>В этот период Комитет активно расширял свою деятельность, устанавливал контакты с международными организациями и привлекал новых сторонников. Были запущены первые масштабные проекты и шаги для активизации борьбы за независимость.</p>
-                        </div>
+                        <p>Комитет провёл съезд в Стамбуле, на котором была принята декларация о намерении ингушского народа добиваться государственной независимости</p>
                     </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-date">
-                            <span>Третий этап</span>
-                            <div class="timeline-dot"></div>
+
+                    <div class="history-block">
+                        <div class="history-icon">
+                            <i class="fas fa-shield-alt"></i>
                         </div>
-                        <div class="timeline-content">
-                            <h3>Международное признание</h3>
-                            <p>Комитет будет добиваться международного признания для Республики после получения независимости, а также будет активно развивать сферу международной торговли.</p>
-                        </div>
+                        <p>В апреле 2023 года КИН объявил о создании военного крыла организации под названием «Ингушская освободительная армия»</p>
                     </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-date">
-                            <span>Современный этап</span>
-                            <div class="timeline-dot"></div>
-                        </div>
-                        <div class="timeline-content">
-                            <h3>Текущая деятельность</h3>
-                            <p>Сегодня Комитет Ингушской Независимости продолжает свою работу по защите прав и интересов ингушского народа, сохранению и развитию его культурного наследия, а также информированию международного сообщества о ситуации в регионе.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                         <div class="timeline-date">
-                            <span>Видео</span>
-                            <div class="timeline-dot"></div>
-                        </div>
-                        <div class="timeline-content">
-                            <div class="video-container" style="margin-top: 20px;">
-                                <iframe width="560" 
-                                height="315" 
-                                src="https://www.youtube.com/embed/Zlk1GQZobQI?si=Q_ozJ4Pb_YGFA9KB" 
-                                title="YouTube video player" 
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                referrerpolicy="strict-origin-when-cross-origin" 
-                                allowfullscreen></iframe>
-                            </div>
-                        </div>
-                    </div>
-                    
                 </div>
-                
+
                 <div class="cta-section fade-in delay-4">
                     <h3>Присоединяйтесь к нам</h3>
                     <p>История нашего Комитета продолжается, и вы можете стать ее частью. Мы приглашаем всех неравнодушных людей присоединиться к нашей деятельности.</p>

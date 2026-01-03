@@ -96,7 +96,7 @@ body {
   font-size: var(--font-size-base);
   line-height: var(--line-height-relaxed);
   color: var(--color-text-primary);
-  background-color: var(--color-background);
+  background-color: var(--color-background-white);
   overflow-x: hidden;
   width: 100%;
   position: relative;
@@ -160,7 +160,7 @@ p {
 .container {
   width: 100%;
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 0;
   position: relative;
   background-color: var(--color-background-white);
   border-radius: var(--radius-lg);
@@ -172,21 +172,18 @@ p {
 @media (min-width: 480px) {
   .container {
     max-width: var(--container-sm);
-    padding: 0 20px;
   }
 }
 
 @media (min-width: 768px) {
   .container {
     max-width: var(--container-md);
-    padding: 0 24px;
   }
 }
 
 @media (min-width: 1024px) {
   .container {
     max-width: var(--container-lg);
-    padding: 0 32px;
   }
 }
 
@@ -205,39 +202,19 @@ p {
 /* Mobile-specific container adjustments */
 @media (max-width: 768px) {
   .container {
-    /* Fix mobile container positioning - prevent right shift */
-    background-color: var(--color-background-white);
-    box-shadow: var(--shadow-sm);
-    border-radius: var(--radius-md);
-    margin: 10px auto;
-    padding: 12px 16px;
-    width: calc(100% - 20px);
-    position: relative;
-    left: 0;
-    right: 0;
-    transform: none;
-    box-sizing: border-box;
-    max-width: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
   }
 }
 
 /* iOS safe area support */
 @supports (padding: max(0px)) {
   body {
-    padding-left: max(16px, env(safe-area-inset-left));
-    padding-right: max(16px, env(safe-area-inset-right));
-  }
-  
-  .container {
-    padding-left: max(16px, env(safe-area-inset-left));
-    padding-right: max(16px, env(safe-area-inset-right));
-  }
-  
-  @media (max-width: 768px) {
-    .container {
-      padding-left: max(12px, env(safe-area-inset-left));
-      padding-right: max(12px, env(safe-area-inset-right));
-    }
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
   }
 }
 
@@ -275,6 +252,10 @@ header {
 }
 
 @media (max-width: 768px) {
+  header {
+    border-radius: 0;
+  }
+
   .logo {
     flex-direction: column;
   }
@@ -485,11 +466,16 @@ header {
 /* Footer */
 footer {
   background-color: #333;
-  color: var(--color-text-inverse);
+  color: #ffffff !important;
   padding: var(--spacing-md);
   font-size: 0.9em;
   text-align: center;
   border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+footer p {
+  color: #ffffff !important;
+  margin-bottom: 0;
 }
 
 /* Main content area */
@@ -589,22 +575,22 @@ main {
   .page-background {
     display: none;
   }
-  
-  body {
-    background-color: var(--color-background-white);
-  }
 }
 
 /* Mobile-specific adjustments */
 @media (max-width: 768px) {
+  footer {
+    border-radius: 0;
+  }
+
   main {
     padding: var(--spacing-md);
   }
-  
+
   .hero-section {
     padding: var(--spacing-lg);
   }
-  
+
   .featured-content,
   .about-sections {
     grid-template-columns: 1fr;
@@ -630,23 +616,11 @@ main {
 
 /* Mobile fixes - prevent horizontal overflow */
 @media (max-width: 768px) {
-  .container {
-    margin: 10px auto !important;
-    padding: 12px 16px !important;
-    width: calc(100% - 20px) !important;
-    max-width: none !important;
-    position: relative !important;
-    left: 0 !important;
-    right: 0 !important;
-    transform: none !important;
-    box-sizing: border-box !important;
-  }
-  
   * {
     max-width: 100% !important;
     box-sizing: border-box !important;
   }
-  
+
   p, h1, h2, h3, h4, h5, h6, span, div {
     word-wrap: break-word !important;
     overflow-wrap: break-word !important;
