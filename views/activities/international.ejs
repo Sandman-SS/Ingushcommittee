@@ -8,161 +8,8 @@
     <meta name="keywords" content="Комитет Ингушской Независимости, международное сотрудничество, дипломатия, ингушский народ">
     <link rel="stylesheet" href="/css/main-fixed.css">
     <link rel="stylesheet" href="/css/components/navigation.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <style>
-        .intro-text {
-            text-align: center;
-            font-size: 1.1rem;
-            color: #666;
-            max-width: 800px;
-            margin: 0 auto 48px auto;
-            line-height: 1.8;
-        }
-
-        /* Баннер */
-        .international-banner {
-            background: linear-gradient(135deg, #1a472a 0%, #0d3319 100%);
-            color: white;
-            padding: 48px;
-            border-radius: 12px;
-            text-align: center;
-            margin-bottom: 48px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .international-banner h3 {
-            font-size: 1.8rem;
-            margin: 0;
-            font-weight: 600;
-            color: white !important;
-        }
-
-        .international-banner p {
-            color: white !important;
-            margin: 0;
-            line-height: 1.7;
-            max-width: 700px;
-        }
-
-        .international-banner * {
-            color: white !important;
-        }
-
-        .banner-icon i {
-            color: white !important;
-        }
-
-        /* Основной контент */
-        .cooperation-areas {
-            margin-bottom: 64px;
-        }
-
-        .cooperation-areas h3 {
-            color: #1a472a;
-            font-size: 2rem;
-            margin-bottom: 32px;
-            font-weight: 700;
-            text-align: center;
-        }
-
-        /* Сетка карточек */
-        .cooperation-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-            margin-bottom: 64px;
-        }
-
-        .cooperation-card {
-            background: white;
-            border-radius: 12px;
-            padding: 28px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .cooperation-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-        }
-
-        .cooperation-icon {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #1a472a 0%, #0d3319 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .cooperation-icon i {
-            color: white !important;
-        }
-
-        .cooperation-card h4 {
-            color: #1a472a;
-            font-size: 1.3rem;
-            margin: 0 0 16px 0;
-            font-weight: 600;
-        }
-
-        .cooperation-card > p {
-            color: #555;
-            line-height: 1.7;
-            margin: 0 0 20px 0;
-        }
-
-        .cooperation-details {
-            width: 100%;
-            text-align: left;
-        }
-
-        .cooperation-details ul {
-            list-style-type: disc;
-            margin: 0;
-            padding-left: 24px;
-        }
-
-        .cooperation-details ul li {
-            margin-bottom: 12px;
-            line-height: 1.7;
-            color: #555;
-        }
-
-        /* Адаптивность */
-        @media (max-width: 768px) {
-            .cooperation-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .international-banner {
-                padding: 32px 24px;
-            }
-
-            .international-banner h3 {
-                font-size: 1.4rem;
-            }
-
-            .cooperation-card {
-                padding: 24px;
-            }
-
-            .cooperation-details ul {
-                padding-left: 20px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="/css/pages/activities.css">
+    <link rel="stylesheet" href="/css/fontawesome/all.min.css">
 </head>
 <body>
     <div class="page-background"></div>
@@ -170,7 +17,7 @@
     <div class="container">
         <header class="fade-in delay-1">
             <div class="logo">
-                <img src="/img/logo.png" alt="Логотип Комитета Ингушской Независимости">
+                <img src="/img/logo.png" alt="Логотип Комитета Ингушской Независимости" width="640" height="640">
             </div>
             <h1 class="site-title">Комитет Ингушской Независимости</h1>
         </header>
@@ -182,7 +29,7 @@
                 <h2>Международное сотрудничество</h2>
                 <p class="intro-text">Комитет Ингушской Независимости активно развивает международное сотрудничество с различными организациями и представителями других народов для обмена опытом, укрепления взаимопонимания и привлечения внимания к ситуации ингушского народа.</p>
 
-                <div class="international-banner fade-in delay-4">
+                <div class="section-banner fade-in delay-4">
                     <div class="banner-icon">
                         <i class="fas fa-globe fa-3x"></i>
                     </div>
@@ -195,14 +42,14 @@
                 <div class="cooperation-areas fade-in delay-4">
                     <h3>Основные направления международного сотрудничества</h3>
 
-                    <div class="cooperation-grid">
-                        <div class="cooperation-card">
-                            <div class="cooperation-icon">
+                    <div class="activities-grid">
+                        <div class="activity-card">
+                            <div class="icon-wrapper">
                                 <i class="fas fa-university fa-2x"></i>
                             </div>
                             <h4>Сотрудничество с международными организациями</h4>
                             <p>Комитет устанавливает и развивает связи с различными международными организациями, включая правозащитные, культурные и образовательные учреждения. Это сотрудничество позволяет поднимать вопросы, связанные с ингушским народом, на международном уровне.</p>
-                            <div class="cooperation-details">
+                            <div class="detail-card">
                                 <ul>
                                     <li>Участие в международных конференциях и форумах</li>
                                     <li>Подготовка и направление обращений и докладов в международные структуры</li>
@@ -211,13 +58,13 @@
                             </div>
                         </div>
 
-                        <div class="cooperation-card">
-                            <div class="cooperation-icon">
+                        <div class="activity-card">
+                            <div class="icon-wrapper">
                                 <i class="fas fa-handshake fa-2x"></i>
                             </div>
                             <h4>Взаимодействие с диаспорами и народами</h4>
                             <p>Мы активно взаимодействуем с представителями других народов, особенно тех, кто также борется за сохранение своей культурной идентичности и права на самоопределение. Это взаимодействие основано на принципах взаимного уважения и солидарности.</p>
-                            <div class="cooperation-details">
+                            <div class="detail-card">
                                 <ul>
                                     <li>Культурный обмен и совместные мероприятия</li>
                                     <li>Обмен опытом в области сохранения национальной идентичности</li>
@@ -226,13 +73,13 @@
                             </div>
                         </div>
 
-                        <div class="cooperation-card">
-                            <div class="cooperation-icon">
+                        <div class="activity-card">
+                            <div class="icon-wrapper">
                                 <i class="fas fa-comments fa-2x"></i>
                             </div>
                             <h4>Информационная дипломатия</h4>
                             <p>Комитет проводит активную информационную работу на международном уровне, рассказывая о культуре, истории и современном положении ингушского народа. Эта деятельность направлена на формирование объективного представления об ингушском народе в мировом сообществе.</p>
-                            <div class="cooperation-details">
+                            <div class="detail-card">
                                 <ul>
                                     <li>Публикация материалов на международных платформах и в СМИ</li>
                                     <li>Проведение информационных кампаний в социальных сетях</li>
@@ -246,11 +93,11 @@
         </main>
 
         <footer class="fade-in delay-4">
-            &copy; 2025 Комитет Ингушской Независимости
+            &copy; 2026 Комитет Ингушской Независимости
         </footer>
     </div>
 
-    <script src="/js/animations.js"></script>
+    <script src="/js/animations.js" defer></script>
     <script src="/js/components/navigation.js"></script>
 </body>
 </html>

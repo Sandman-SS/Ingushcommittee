@@ -38,5 +38,8 @@
     "winston": "^3.17.0",
     "winston-daily-rotate-file": "^5.0.0",
     "xss": "^1.0.15"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.5"
   }
 }

@@ -13,70 +13,61 @@
     <meta property="og:image" content="/IMG/logo.png">
     <link rel="stylesheet" href="/css/main-fixed.css">
     <link rel="stylesheet" href="/css/components/navigation.css">
-    <!-- Добавляем Font Awesome для иконок -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/pages/activities.css">
+    <link rel="stylesheet" href="/css/fontawesome/all.min.css">
 </head>
 <body>
-    <!-- Фоновое изображение с горами -->
     <div class="page-background"></div>
-    
+
     <div class="container">
         <header class="fade-in delay-1">
             <div class="logo">
-                <img src="/img/logo.png" alt="Логотип Комитета Ингушской Независимости">
+                <img src="/img/logo.png" alt="Логотип Комитета Ингушской Независимости" width="640" height="640">
             </div>
             <h1 class="site-title">Комитет Ингушской Независимости</h1>
         </header>
-        
+
         <%- include('./partials/navigation') %>
-        
+
         <main>
             <section class="content fade-in delay-3">
                 <h2>Наша миссия</h2>
                 <p class="intro-text">Комитет Ингушской Независимости был создан с ясной и непоколебимой миссией - сохранять и развивать богатое культурное наследие ингушского народа, защищать его интересы и права, а также способствовать повышению национального самосознания.</p>
-                
-                <div class="mission-points fade-in delay-4">
-                    <div class="mission-point">
+
+                <div class="activities-grid fade-in delay-4">
+                    <div class="activity-card">
                         <div class="icon-wrapper">
-                            <i class="fas fa-landmark fa-2x"></i>
+                            <i class="fas fa-landmark"></i>
                         </div>
-                        <div class="mission-content">
-                            <h3>Сохранение культурного наследия</h3>
-                            <p>Мы стремимся сохранить богатую историю, традиции и обычаи ингушского народа для будущих поколений. Это включает в себя документирование и популяризацию языка, литературы, искусства, музыки и других аспектов культурного наследия.</p>
-                        </div>
+                        <h3>Сохранение культурного наследия</h3>
+                        <p>Мы стремимся сохранить богатую историю, традиции и обычаи ингушского народа для будущих поколений. Это включает в себя документирование и популяризацию языка, литературы, искусства, музыки и других аспектов культурного наследия.</p>
                     </div>
-                    
-                    <div class="mission-point">
+
+                    <div class="activity-card">
                         <div class="icon-wrapper">
-                            <i class="fas fa-balance-scale fa-2x"></i>
+                            <i class="fas fa-balance-scale"></i>
                         </div>
-                        <div class="mission-content">
-                            <h3>Защита интересов и прав</h3>
-                            <p>Мы выступаем за справедливость и равенство для ингушского народа на всех уровнях. Наша деятельность направлена на защиту территориальной целостности исторических земель ингушского народа.</p>
-                        </div>
+                        <h3>Защита интересов и прав</h3>
+                        <p>Мы выступаем за справедливость и равенство для ингушского народа на всех уровнях. Наша деятельность направлена на защиту территориальной целостности исторических земель ингушского народа.</p>
                     </div>
-                    
-                    <div class="mission-point">
+
+                    <div class="activity-card">
                         <div class="icon-wrapper">
-                            <i class="fas fa-graduation-cap fa-2x"></i>
+                            <i class="fas fa-graduation-cap"></i>
                         </div>
-                        <div class="mission-content">
-                            <h3>Образование и просвещение</h3>
-                            <p>Мы работаем над тем, чтобы ингушский народ стал образованнее, планируя развивать образовательные сферы с помощью научного отдела КИН.</p>
-                        </div>
+                        <h3>Образование и просвещение</h3>
+                        <p>Мы работаем над тем, чтобы ингушский народ стал образованнее, планируя развивать образовательные сферы с помощью научного отдела КИН.</p>
                     </div>
-                    
-                    <div class="mission-point">
+
+                    <div class="activity-card">
                         <div class="icon-wrapper">
-                            <i class="fas fa-handshake fa-2x"></i>
+                            <i class="fas fa-handshake"></i>
                         </div>
-                        <div class="mission-content">
-                            <h3>Международное сотрудничество</h3>
-                            <p>Мы стремимся к установлению и укреплению связей с международными организациями, правозащитными группами и другими народами. Через сотрудничество мы можем достичь большего признания и понимания ситуации ингушского народа.</p>
-                        </div>
+                        <h3>Международное сотрудничество</h3>
+                        <p>Мы стремимся к установлению и укреплению связей с международными организациями, правозащитными группами и другими народами. Через сотрудничество мы можем достичь большего признания и понимания ситуации ингушского народа.</p>
                     </div>
                 </div>
-                
+
                 <div class="cta-section fade-in delay-4">
                     <h3>Присоединяйтесь к нашей миссии</h3>
                     <p>Мы приглашаем всех, кто разделяет наши ценности и цели, присоединиться к нашей деятельности. Вместе мы можем сделать больше для сохранения и развития культурного наследия ингушского народа.</p>
@@ -91,13 +82,13 @@
                 </div>
             </section>
         </main>
-        
+
         <footer class="fade-in delay-4">
-            &copy; 2025 Комитет Ингушской Независимости
+            &copy; 2026 Комитет Ингушской Независимости
         </footer>
     </div>
-    
-    <script src="/js/animations.js"></script>
+
+    <script src="/js/animations.js" defer></script>
     <script src="/js/components/navigation.js"></script>
 </body>
 </html>
