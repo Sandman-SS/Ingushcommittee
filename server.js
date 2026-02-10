@@ -158,24 +158,14 @@ app.use((req, res, next) => {
 app.use(
     helmet.contentSecurityPolicy({
         directives: {
-            defaultSrc: ["'self'"], // Разрешает загрузку ресурсов только с вашего домена
-            // Добавляем unpkg.com для Leaflet JS и CSS, а также fontawesome.com для иконок Leaflet DivIcon
-            scriptSrc: ["'self'", "'unsafe-inline'", "https://cdnjs.cloudflare.com", "https://kit.fontawesome.com", "https://unpkg.com"],
-            // Добавляем unpkg.com для Leaflet CSS
-            styleSrc: ["'self'", "https://cdnjs.cloudflare.com", "https://kit.fontawesome.com", "https://unpkg.com", "'unsafe-inline'"],
-            // Изображения: ваш домен, data-URI (для иконок), Telegram, YouTube превью
-            // !!! ВАЖНО: Добавляем источники для тайлов карты !!!
-            imgSrc: ["'self'", "data:", "https://t.me", "*.telegram.org", "*.t.me", "https://i.ytimg.com", "https://*.tile.openstreetmap.org", "https://mt*.google.com"],
-            // Медиа (видео/аудио): ваш домен, Telegram (со всеми поддоменами)
-            mediaSrc: ["'self'", "https://t.me", "*.telegram.org", "*.t.me"],
-            // Iframe: ваш домен и YouTube (для встраивания видео)
+            defaultSrc: ["'self'"],
+            scriptSrc: ["'self'", "'unsafe-inline'", "https://unpkg.com"],
+            styleSrc: ["'self'", "https://unpkg.com", "'unsafe-inline'"],
+            imgSrc: ["'self'", "data:", "https://t.me", "https://*.telegram.org", "https://*.t.me", "https://i.ytimg.com", "https://*.tile.openstreetmap.org", "https://mt0.google.com", "https://mt1.google.com", "https://mt2.google.com", "https://mt3.google.com"],
+            mediaSrc: ["'self'", "https://t.me", "https://*.telegram.org", "https://*.t.me"],
             frameSrc: ["'self'", "https://www.youtube.com", "https://www.youtube-nocookie.com"],
-            // Шрифты: ваш домен, Font Awesome CDN и Google Fonts (если используете)
-            fontSrc: ["'self'", "https://cdnjs.cloudflare.com", "https://fonts.gstatic.com"],
-            // AJAX-запросы: ваш домен, Telegram API и Font Awesome Kit
-            // !!! ВАЖНО: Leaflet может использовать connectSrc для тайлов в некоторых режимах,
-            // или если вы делаете AJAX-запросы для данных карты.
-            connectSrc: ["'self'", "https://api.telegram.org", "https://kit.fontawesome.com", "https://*.tile.openstreetmap.org", "https://mt*.google.com"]
+            fontSrc: ["'self'"],
+            connectSrc: ["'self'", "https://api.telegram.org", "https://*.tile.openstreetmap.org", "https://mt0.google.com", "https://mt1.google.com", "https://mt2.google.com", "https://mt3.google.com"]
         },
     })
 );
@@ -269,9 +259,8 @@ app.get('/activities/events', (req, res) => {
     res.render('events');
 });
 
-app.get('/activities/projects', (req, res) => {
-    res.render('activities/projects');
-});
+// 301 редиректы для удалённых страниц
+app.get('/activities/projects', (req, res) => res.redirect(301, '/activities'));
 
 app.get('/activities/achievements', (req, res) => {
     res.render('achievements');
@@ -281,9 +270,7 @@ app.get('/activities/culture', (req, res) => {
     res.render('activities/culture');
 });
 
-app.get('/activities/education', (req, res) => {
-    res.render('activities/education');
-});
+app.get('/activities/education', (req, res) => res.redirect(301, '/activities'));
 
 app.get('/activities/rights', (req, res) => {
     res.render('activities/rights'); // Изменено

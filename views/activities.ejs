@@ -8,218 +8,8 @@
     <meta name="keywords" content="Комитет Ингушской Независимости, ингушский народ, деятельность, проекты">
     <link rel="stylesheet" href="/css/main-fixed.css">
     <link rel="stylesheet" href="/css/components/navigation.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <style>
-        .intro-text {
-            text-align: center;
-            font-size: 1.1rem;
-            color: #666;
-            max-width: 800px;
-            margin: 0 auto 48px auto;
-            line-height: 1.8;
-        }
-
-        /* Сетка карточек деятельности */
-        .activities-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-            margin-bottom: 64px;
-        }
-
-        .activity-card {
-            background: white;
-            border-radius: 12px;
-            padding: 32px 24px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .activity-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-        }
-
-        .activity-card .icon-wrapper {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #1a472a 0%, #0d3319 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            margin-bottom: 20px;
-            font-size: 2rem;
-        }
-
-        .activity-card h3 {
-            color: #1a472a;
-            font-size: 1.4rem;
-            margin: 0 0 16px 0;
-            font-weight: 600;
-        }
-
-        .activity-card p {
-            color: #555;
-            line-height: 1.7;
-            margin: 0 0 24px 0;
-            flex-grow: 1;
-        }
-
-        .activity-card .btn {
-            background: #1a472a;
-            color: white;
-            padding: 10px 24px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: background 0.2s;
-            display: inline-block;
-        }
-
-        .activity-card .btn:hover {
-            background: #0d3319;
-        }
-
-        /* Секция проектов */
-        .projects-section {
-            margin-bottom: 64px;
-        }
-
-        .projects-section h2 {
-            text-align: center;
-            color: #1a472a;
-            font-size: 2rem;
-            margin-bottom: 32px;
-            font-weight: 700;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-        }
-
-        .project-card {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border-radius: 12px;
-            padding: 28px;
-            border-left: 4px solid #1a472a;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .project-card:hover {
-            transform: translateX(4px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        .project-card h3 {
-            color: #1a472a;
-            font-size: 1.3rem;
-            margin: 0 0 12px 0;
-            font-weight: 600;
-        }
-
-        .project-card p {
-            color: #555;
-            line-height: 1.7;
-            margin: 0 0 16px 0;
-        }
-
-        .project-status {
-            display: flex;
-            align-items: center;
-        }
-
-        .status-badge {
-            display: inline-block;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            background: #28a745;
-            color: white;
-        }
-
-        .status-badge:contains('Планируется') {
-            background: #ffc107;
-        }
-
-        /* CTA секция */
-        .cta-section {
-            background: white;
-            border-radius: 12px;
-            padding: 48px 32px;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-        .cta-section h3 {
-            color: #1a472a;
-            font-size: 1.8rem;
-            margin: 0 0 16px 0;
-            font-weight: 600;
-        }
-
-        .cta-section p {
-            color: #666;
-            font-size: 1.1rem;
-            line-height: 1.7;
-            max-width: 700px;
-            margin: 0 auto 32px auto;
-        }
-
-        .btn-glow {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(135deg, #1a472a 0%, #0d3319 100%);
-            color: white;
-            padding: 14px 32px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: 600;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 12px rgba(26, 71, 42, 0.3);
-        }
-
-        .btn-glow:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(26, 71, 42, 0.4);
-        }
-
-        /* Адаптивность */
-        @media (max-width: 768px) {
-            .activities-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .activity-card,
-            .project-card,
-            .cta-section {
-                padding: 24px;
-            }
-
-            .cta-section h3 {
-                font-size: 1.5rem;
-            }
-
-            .cta-section p {
-                font-size: 1rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="/css/pages/activities.css">
+    <link rel="stylesheet" href="/css/fontawesome/all.min.css">
 </head>
 <body>
     <div class="page-background"></div>
@@ -227,7 +17,7 @@
     <div class="container">
         <header class="fade-in delay-1">
             <div class="logo">
-                <img src="/img/logo.png" alt="Логотип Комитета Ингушской Независимости">
+                <img src="/img/logo.png" alt="Логотип Комитета Ингушской Независимости" width="640" height="640">
             </div>
             <h1 class="site-title">Комитет Ингушской Независимости</h1>
         </header>
@@ -255,7 +45,6 @@
                         </div>
                         <h3>Образовательные программы</h3>
                         <p>Наш комитет разрабатывает и реализует образовательные программы по изучению истории, языка и культуры ингушского народа. Мы организуем и выпускаем различные информационные материалы.</p>
-                        <a href="/activities/education" class="btn">Подробнее</a>
                     </div>
 
                     <div class="activity-card">
@@ -277,31 +66,37 @@
                     </div>
                 </div>
 
+                <hr class="section-divider">
+
                 <div class="projects-section fade-in delay-4">
                     <h2>Наши проекты</h2>
-                    <div class="projects-grid">
-                        <div class="project-card">
+                    <p class="intro-text">Текущие проекты и инициативы Комитета</p>
+                    <div class="activities-grid">
+                        <div class="activity-card">
+                            <div class="icon-wrapper">
+                                <i class="fas fa-language"></i>
+                            </div>
                             <h3>Ингушский язык и культура</h3>
                             <p>Проект по созданию учебных материалов и организации курсов ингушского языка для сохранения и развития языковых навыков среди молодежи.</p>
-                            <div class="project-status">
-                                <span class="status-badge">В процессе</span>
-                            </div>
+                            <span class="status-badge in-progress">В процессе</span>
                         </div>
 
-                        <div class="project-card">
+                        <div class="activity-card">
+                            <div class="icon-wrapper">
+                                <i class="fas fa-code"></i>
+                            </div>
                             <h3>Цифровизация языка</h3>
                             <p>Внедрение ингушского языка в Google переводчик, Chat GPT и иные важные инструменты для цифровизации языка и его дальнейшего развития.</p>
-                            <div class="project-status">
-                                <span class="status-badge">В процессе</span>
-                            </div>
+                            <span class="status-badge in-progress">В процессе</span>
                         </div>
 
-                        <div class="project-card">
+                        <div class="activity-card">
+                            <div class="icon-wrapper">
+                                <i class="fas fa-globe-americas"></i>
+                            </div>
                             <h3>Информационный портал</h3>
                             <p>Создание полноценного информационного ресурса о культуре, истории и современном положении ингушского народа на нескольких языках.</p>
-                            <div class="project-status">
-                                <span class="status-badge">Планируется</span>
-                            </div>
+                            <span class="status-badge planned">Планируется</span>
                         </div>
                     </div>
                 </div>
@@ -317,11 +112,11 @@
         </main>
 
         <footer class="fade-in delay-4">
-            &copy; 2025 Комитет Ингушской Независимости
+            &copy; 2026 Комитет Ингушской Независимости
         </footer>
     </div>
 
-    <script src="/js/animations.js"></script>
+    <script src="/js/animations.js" defer></script>
     <script src="/js/components/navigation.js"></script>
 </body>
 </html>

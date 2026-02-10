@@ -3,10 +3,10 @@
 /* CSS Variables */
 :root {
   /* Colors */
-  --color-primary: #006400;
-  --color-primary-dark: #004d00;
+  --color-primary: #1a472a;
+  --color-primary-dark: #0d3319;
   --color-secondary: #17a2b8;
-  --color-accent: #007500;
+  --color-accent: #1a472a;
   --color-text-primary: #212529;
   --color-text-secondary: #666;
   --color-text-inverse: #ffffff;
@@ -30,7 +30,7 @@
   --spacing-3xl: 60px;
 
   /* Typography */
-  --font-family-base: Arial, sans-serif;
+  --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-base: 16px;
@@ -563,7 +563,7 @@ main {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: url('/img/mountains.jpg');
+  background-image: url('/img/mountains-opt.jpg');
   background-size: cover;
   background-position: center;
   filter: blur(5px);
