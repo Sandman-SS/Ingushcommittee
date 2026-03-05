@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="<%= locale %>">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фотоальбом — Красивые места Ингушетии</title>
+
+    <%- include('./partials/seo-meta', {
+        title: 'Фотоальбом — Красивые места Ингушетии',
+        description: 'Фотоальбом красивейших мест Ингушетии: башенные комплексы, горные пейзажи, мечети, храмы и города. Джейрах, Вовнушки, Эрзи, Эгикал и другие достопримечательности.',
+        keywords: 'Ингушетия, фотоальбом, достопримечательности, Вовнушки, Эрзи, Джейрах, Эгикал, башни, горы Кавказ, мечети',
+        req: typeof req !== 'undefined' ? req : { originalUrl: '/gallery' }
+    }) %>
+
+    <link rel="stylesheet" href="/css/main-fixed.css">
+    <link rel="stylesheet" href="/css/components/navigation.css">
+    <link rel="stylesheet" href="/css/pages/album.css">
+    <link rel="stylesheet" href="/css/fontawesome/all.min.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <%- include('./partials/google-analytics') %>
+
+    <script src="/js/components/navigation.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+</head>
+<body>
+    <div class="page-background"></div>
+
+    <div class="container">
+        <header class="fade-in delay-1" role="banner">
+            <div class="logo">
+                <img src="/img/logo.png" alt="Логотип Комитета Ингушской Независимости" width="640" height="640">
+            </div>
+            <h1 class="site-title">Комитет Ингушской Независимости</h1>
+        </header>
+
+        <%- include('./partials/navigation') %>
+
+        <main role="main">
+            <section class="content fade-in delay-3">
+                <h2><i class="fas fa-images"></i> Красивые места Ингушетии</h2>
+                <p class="intro-text">Ингушетия (Галгайче) — край величественных гор, древних башен и живописных ущелий. Здесь собраны фотографии самых красивых и значимых мест нашей родины.</p>
+
+                <!-- Фильтры категорий -->
+                <div class="album-filters fade-in delay-4" role="tablist" aria-label="Категории фотографий">
+                    <button class="album-filter active" data-category="all" role="tab" aria-selected="true">
+                        <i class="fas fa-th"></i> Все
+                    </button>
+                    <button class="album-filter" data-category="towers" role="tab" aria-selected="false">
+                        <i class="fas fa-chess-rook"></i> Башни
+                    </button>
+                    <button class="album-filter" data-category="nature" role="tab" aria-selected="false">
+                        <i class="fas fa-mountain"></i> Природа
+                    </button>
+                    <button class="album-filter" data-category="religious" role="tab" aria-selected="false">
+                        <i class="fas fa-mosque"></i> Святыни
+                    </button>
+                    <button class="album-filter" data-category="cities" role="tab" aria-selected="false">
+                        <i class="fas fa-city"></i> Города
+                    </button>
+                </div>
+
+                <!-- Счётчик фото -->
+                <div class="album-counter fade-in delay-4">
+                    <span id="photo-count"><%= photos.length %></span> фотографий
+                </div>
+
+                <!-- Сетка фотографий -->
+                <div class="album-grid fade-in delay-5" id="album-grid">
+                    <% photos.forEach(function(photo, index) { %>
+                        <div class="album-item" data-category="<%= photo.category %>" data-index="<%= index %>">
+                            <img
+                                src="<%= photo.src %>"
+                                alt="<%= photo.title %>"
+                                loading="lazy"
+                                width="400"
+                                height="300"
+                            >
+                            <div class="album-item__overlay">
+                                <span class="album-item__title"><%= photo.title %></span>
+                                <% if (photo.description) { %>
+                                    <span class="album-item__desc"><%= photo.description %></span>
+                                <% } %>
+                                <span class="album-item__icon"><i class="fas fa-search-plus"></i></span>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+
+                <!-- Пустое состояние -->
+                <div class="album-empty" id="album-empty" style="display: none;">
+                    <i class="fas fa-image"></i>
+                    <p>В этой категории пока нет фотографий</p>
+                </div>
+            </section>
+        </main>
+
+        <%- include('./partials/footer') %>
+    </div>
+
+    <!-- Лайтбокс -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Просмотр фотографии">
+        <button class="lightbox__close" id="lightbox-close" aria-label="Закрыть">
+            <i class="fas fa-times"></i>
+        </button>
+
+        <button class="lightbox__nav lightbox__nav--prev" id="lightbox-prev" aria-label="Предыдущая фотография">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <div class="lightbox__content" id="lightbox-content">
+            <img class="lightbox__img" id="lightbox-img" src="" alt="" draggable="false">
+            <div class="lightbox__info" id="lightbox-info">
+                <span class="lightbox__title" id="lightbox-title"></span>
+                <span class="lightbox__desc" id="lightbox-desc"></span>
+                <span class="lightbox__counter" id="lightbox-counter"></span>
+            </div>
+        </div>
+
+        <button class="lightbox__nav lightbox__nav--next" id="lightbox-next" aria-label="Следующая фотография">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+
+    <script src="/js/animations.js" defer></script>
+</body>
+</html>

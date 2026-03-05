@@ -306,9 +306,80 @@ app.get('/people', (req, res) => {
     res.render('people');
 });
 
-// Раздел "Галерея"
+// Раздел "Галерея" — данные фотоальбома
+const galleryPhotos = [
+    // === Башенные комплексы ===
+    { src: '/img/cultural/vovnushki.jpg',       title: 'Вовнушки',              category: 'towers', description: 'Боевые башни в Джейрахском ущелье' },
+    { src: '/img/cultural/erzi.jpg',            title: 'Эрзи',                  category: 'towers', description: 'Крупнейший башенный комплекс Ингушетии' },
+    { src: '/img/cultural/targim.jpg',          title: 'Таргим',                category: 'towers', description: 'Древнее поселение в ущелье Ассы' },
+    { src: '/img/cultural/egikal.jpg',          title: 'Эгикал',                category: 'towers', description: 'Крупнейший башенный город Кавказа' },
+    { src: '/img/cultural/khost.jpg',           title: 'Хост',                  category: 'towers', description: 'Башенный комплекс в горной Ингушетии' },
+    { src: '/img/cultural/tower-of-concord.jpg',title: 'Башня Согласия',        category: 'towers', description: 'Современный символ Магаса' },
+    { src: '/img/cultural/cori.jpg',            title: 'Цори',                  category: 'towers', description: 'Башенный комплекс в верховьях реки Гулойхи' },
+    { src: '/img/cultural/salgi.jpg',           title: 'Салги',                 category: 'towers', description: 'Средневековое башенное поселение' },
+    { src: '/img/cultural/khamkhi.jpg',         title: 'Хамхи',                category: 'towers', description: 'Древний аул в горной Ингушетии' },
+    { src: '/img/cultural/falhan.jpg',          title: 'Фалхан',               category: 'towers', description: 'Башенное поселение в Джейрахском районе' },
+    { src: '/img/cultural/barhane.jpg',         title: 'Бархане',              category: 'towers', description: 'Горное поселение с боевыми башнями' },
+    { src: '/img/cultural/khart.jpg',           title: 'Харт',                 category: 'towers', description: 'Башенный комплекс' },
+    { src: '/img/cultural/shoan.jpg',           title: 'Шоан',                 category: 'towers', description: 'Горное башенное поселение' },
+    { src: '/img/cultural/bisht.jpg',           title: 'Бишт',                 category: 'towers', description: 'Башенный комплекс' },
+    { src: '/img/cultural/curov.jpg',           title: 'Цуров',                category: 'towers', description: 'Средневековые башни' },
+    { src: '/img/cultural/mechal.jpg',          title: 'Мецхал',               category: 'towers', description: 'Древний башенный аул' },
+    { src: '/img/cultural/niy.jpg',             title: 'Ний',                  category: 'towers', description: 'Башенное поселение' },
+    { src: '/img/cultural/hadzi.jpg',           title: 'Хьайрах',              category: 'towers', description: 'Горное поселение' },
+    { src: '/img/cultural/gagi.jpg',            title: 'Гаги',                 category: 'towers', description: 'Башенный комплекс' },
+    { src: '/img/cultural/gu.jpg',              title: 'Гу',                   category: 'towers', description: 'Горное поселение' },
+
+    // === Природа и пейзажи ===
+    { src: '/img/settlements/dzheyrakh.jpg',    title: 'Джейрахское ущелье',    category: 'nature', description: 'Живописное ущелье в горной Ингушетии' },
+    { src: '/img/settlements/armhi.jpg',        title: 'Армхи',                category: 'nature', description: 'Горный курорт в ущелье реки Армхи' },
+    { src: '/img/religious/djeirah.JPG',        title: 'Горы Джейраха',        category: 'nature', description: 'Горные пейзажи Джейрахского района' },
+    { src: '/img/settlements/galashki.jpg',     title: 'Галашки',              category: 'nature', description: 'Село в предгорьях Ингушетии' },
+    { src: '/img/settlements/alkun.jpg',        title: 'Алкун',                category: 'nature', description: 'Горное село в Джейрахском районе' },
+    { src: '/img/settlements/guli.jpg',         title: 'Гули',                 category: 'nature', description: 'Горный аул' },
+    { src: '/img/settlements/ezmi.jpg',         title: 'Эзми',                 category: 'nature', description: 'Горное поселение' },
+    { src: '/img/settlements/berd.jpg',         title: 'Берд',                 category: 'nature', description: 'Горное поселение' },
+
+    // === Мечети и святыни ===
+    { src: '/img/religious/thaba-erdy.jpg',     title: 'Тхаба-Ерды',           category: 'religious', description: 'Древнейший христианский храм на Кавказе, VIII–IX вв.' },
+    { src: '/img/religious/nazran-mosque.jpg',   title: 'Мечеть в Назрани',     category: 'religious', description: 'Центральная мечеть города Назрань' },
+    { src: '/img/religious/magas-mosque.jpg',    title: 'Мечеть в Магасе',      category: 'religious', description: 'Мечеть столицы Ингушетии' },
+    { src: '/img/religious/djuma.jpg',          title: 'Джума-мечеть',         category: 'religious', description: 'Пятничная мечеть' },
+    { src: '/img/religious/mosek.jpg',          title: 'Мечеть',               category: 'religious', description: 'Мечеть в Ингушетии' },
+    { src: '/img/religious/nazranov.jpg',       title: 'Мечеть Назрани',       category: 'religious', description: 'Историческая мечеть' },
+    { src: '/img/religious/batl.jpg',           title: 'Батлибори',            category: 'religious', description: 'Святилище' },
+    { src: '/img/religious/acha.jpg',           title: 'Святилище',            category: 'religious', description: 'Древнее святилище' },
+    { src: '/img/religious/malgo.jpg',          title: 'Святилище Малго',      category: 'religious', description: 'Культовое сооружение' },
+    { src: '/img/religious/redan.jpg',          title: 'Редант',               category: 'religious', description: 'Историческое место' },
+
+    // === Памятники и музеи ===
+    { src: '/img/cultural/memor.jpg',           title: 'Мемориал жертвам репрессий', category: 'cities', description: 'Памятник жертвам депортации 1944 года' },
+    { src: '/img/cultural/muz.JPG',             title: 'Краеведческий музей',   category: 'cities', description: 'Музей в Ингушетии' },
+    { src: '/img/cultural/pam.jpg',             title: 'Памятник',             category: 'cities', description: 'Монумент' },
+
+    // === Города и сёла ===
+    { src: '/img/settlements/magas.jpg',        title: 'Магас',                category: 'cities', description: 'Столица Республики Ингушетия' },
+    { src: '/img/settlements/nazran.jpg',       title: 'Назрань',              category: 'cities', description: 'Крупнейший город Ингушетии' },
+    { src: '/img/settlements/karabulak.jpg',    title: 'Карабулак',            category: 'cities', description: 'Город в Ингушетии' },
+    { src: '/img/settlements/malgobek.jpg',     title: 'Малгобек',             category: 'cities', description: 'Город воинской славы' },
+    { src: '/img/settlements/sunzha.jpg',       title: 'Сунжа',                category: 'cities', description: 'Город на реке Сунжа' },
+    { src: '/img/settlements/angusht.jpg',      title: 'Ангушт',               category: 'cities', description: 'Историческое поселение ингушей' },
+    { src: '/img/settlements/vladikavkaz.jpg',  title: 'Владикавказ',          category: 'cities', description: 'Исторический город ингушей' },
+    { src: '/img/settlements/ekazhevo.jpg',     title: 'Экажево',              category: 'cities', description: 'Село в Назрановском районе' },
+    { src: '/img/settlements/ali-yurt.jpg',     title: 'Али-Юрт',             category: 'cities', description: 'Село в Ингушетии' },
+    { src: '/img/settlements/plievo.jpg',       title: 'Плиево',               category: 'cities', description: 'Село в Назрановском районе' },
+    { src: '/img/settlements/surkhakhi.jpg',    title: 'Сурхахи',              category: 'cities', description: 'Село в Назрановском районе' },
+    { src: '/img/settlements/achaluki.jpg',     title: 'Ачалуки',              category: 'cities', description: 'Бальнеологический курорт' },
+    { src: '/img/settlements/nesterovskaya.jpg',title: 'Нестеровская',         category: 'cities', description: 'Станица в Сунженском районе' },
+    { src: '/img/settlements/sagopshi.jpg',     title: 'Сагопши',              category: 'cities', description: 'Село в Малгобекском районе' },
+    { src: '/img/settlements/mujichi.jpg',      title: 'Мужичи',               category: 'cities', description: 'Село в Сунженском районе' },
+    { src: '/img/settlements/Barsuki.jpg',      title: 'Барсуки',              category: 'cities', description: 'Населённый пункт в Ингушетии' },
+    { src: '/img/settlements/inarki.jpg',       title: 'Инарки',               category: 'cities', description: 'Село в Малгобекском районе' },
+    { src: '/img/settlements/psedah.jpg',       title: 'Пседах',               category: 'cities', description: 'Село в Малгобекском районе' },
+];
+
 app.get('/gallery', (req, res) => {
-    res.render('gallery');
+    res.render('gallery', { photos: galleryPhotos });
 });
 
 // Раздел "Контакты"
