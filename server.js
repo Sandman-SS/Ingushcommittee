@@ -170,7 +170,26 @@ app.use(
     })
 );
 
-// --- ЛОГИКА TELEGRAM УДАЛЕНА ---
+// --- TELEGRAM SCRAPER ---
+const cron = require('node-cron');
+const { scrapeChannel } = require('./utils/telegram-scraper');
+
+// Первичная загрузка новостей при старте (через 5 секунд после запуска)
+setTimeout(async () => {
+    log.info('Running initial Telegram channel scrape...');
+    const count = await scrapeChannel();
+    if (count > 0) {
+        log.info(`Initial scrape: loaded ${count} posts`);
+    }
+}, 5000);
+
+// Проверка новых постов каждые 5 минут
+cron.schedule('*/5 * * * *', async () => {
+    const count = await scrapeChannel();
+    if (count > 0) {
+        log.info(`Cron scrape: ${count} new posts`);
+    }
+});
 
 
 // --- МАРШРУТЫ САЙТА ---
@@ -230,7 +249,8 @@ app.get('/api/search', (req, res) => {
 
 // Главная страница
 app.get('/', (req, res) => {
-    res.render('index', { req });
+    const posts = loadPosts().slice(0, 3);
+    res.render('index', { req, posts });
 });
 
 // Раздел "О комитете"
@@ -280,6 +300,11 @@ app.get('/activities/international', (req, res) => {
     res.render('activities/international'); // Изменено
 });
 
+
+// Раздел "Народ"
+app.get('/people', (req, res) => {
+    res.render('people');
+});
 
 // Раздел "Галерея"
 app.get('/gallery', (req, res) => {
