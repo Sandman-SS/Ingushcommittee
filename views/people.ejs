@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="<%= locale %>">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ингушский народ - Комитет Ингушской Независимости</title>
+
+    <%- include('./partials/seo-meta', {
+        title: 'Ингушский народ — история, культура, демография',
+        description: 'Ингуши (галгай) — один из древнейших народов Кавказа. История, культура, язык, демография и культурное наследие ингушского народа.',
+        keywords: 'ингуши, галгай, Ингушетия, Галгайче, история, культура, народ, кавказ, башенная архитектура, нахские народы',
+        req: typeof req !== 'undefined' ? req : { originalUrl: '/people' }
+    }) %>
+
+    <link rel="stylesheet" href="/css/main-fixed.css">
+    <link rel="stylesheet" href="/css/components/navigation.css">
+    <link rel="stylesheet" href="/css/fontawesome/all.min.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <%- include('./partials/google-analytics') %>
+
+    <script src="/js/components/navigation.js" defer></script>
+</head>
+<body>
+    <div class="page-background"></div>
+
+    <div class="container">
+        <header class="fade-in delay-1" role="banner">
+            <div class="logo">
+                <img src="/img/logo.png" alt="Логотип Комитета Ингушской Независимости" width="640" height="640">
+            </div>
+            <h1 class="site-title">Комитет Ингушской Независимости</h1>
+        </header>
+
+        <%- include('./partials/navigation') %>
+
+        <main role="main">
+            <section class="content fade-in delay-3">
+                <h2><i class="fas fa-landmark"></i> Ингушский народ</h2>
+                <p class="intro-text">Ингуши (самоназвание — <strong>ГIалгIай</strong>) — один из древнейших автохтонных народов Кавказа, носители уникальной культуры и многовековых традиций.</p>
+
+                <!-- Демография -->
+                <div class="people-section fade-in delay-4">
+                    <h3><i class="fas fa-chart-bar"></i> Общие сведения</h3>
+
+                    <div class="people-stats">
+                        <div class="people-stat-card">
+                            <span class="stat-value">~700 тыс.</span>
+                            <span class="stat-label">Общая численность</span>
+                        </div>
+                        <div class="people-stat-card">
+                            <span class="stat-value">ГIалгIай мотт</span>
+                            <span class="stat-label">Родной язык</span>
+                        </div>
+                        <div class="people-stat-card">
+                            <span class="stat-value">Нахская</span>
+                            <span class="stat-label">Языковая группа</span>
+                        </div>
+                        <div class="people-stat-card">
+                            <span class="stat-value">Галгайче</span>
+                            <span class="stat-label">Историческая родина</span>
+                        </div>
+                    </div>
+
+                    <p>Ингуши принадлежат к нахской ветви северокавказской языковой семьи. Исторически населяют территорию Центрального Кавказа — горные и предгорные районы, которые на ингушском языке называются <strong>Галгайче</strong>. Значительная диаспора проживает в Турции, странах Ближнего Востока и Европы.</p>
+                </div>
+
+                <!-- История -->
+                <div class="people-section fade-in delay-4">
+                    <h3><i class="fas fa-scroll"></i> Краткая история</h3>
+
+                    <p>Ингуши — один из коренных народов Кавказа, чья история насчитывает тысячелетия. Археологические находки свидетельствуют о непрерывном присутствии предков ингушей в горных районах Центрального Кавказа начиная с эпохи бронзы.</p>
+
+                    <p>Ингушские боевые и жилые башни, датируемые X–XVII веками, являются визитной карточкой народа. Башенные комплексы Эрзи, Вовнушки, Таргим и Эгикал входят в число наиболее впечатляющих архитектурных памятников Кавказа и включены в список объектов, представленных к охране ЮНЕСКО.</p>
+
+                    <p>В 1944 году ингушский народ подвергся тотальной депортации в Казахстан и Среднюю Азию по приказу Сталина. Эта трагедия унесла жизни значительной части народа и остаётся глубокой раной в исторической памяти ингушей.</p>
+
+                    <p>После реабилитации в 1957 году ингуши вернулись на родину, однако часть исконных территорий, в том числе Пригородный район с городом Ангушт (Владикавказ), не была возвращена народу.</p>
+                </div>
+
+                <!-- Культура -->
+                <div class="people-section fade-in delay-4">
+                    <h3><i class="fas fa-theater-masks"></i> Культура и традиции</h3>
+
+                    <p>Ингушская культура основана на древнем кодексе чести <strong>«Эздел»</strong> — системе морально-этических норм, которая регулирует все стороны жизни. Эздел включает понятия чести, гостеприимства, уважения к старшим, верности слову и взаимопомощи.</p>
+
+                    <p>Ингуши известны уникальной <strong>башенной архитектурой</strong>. Боевые башни (<strong>бIов</strong>) достигали высоты 25–30 метров и служили как оборонительные сооружения. Жилые башни (<strong>гIала</strong>) составляли основу горных поселений. Многие из этих сооружений сохранились до наших дней.</p>
+
+                    <p>Традиционная духовная культура ингушей богата мифологией, эпосом и фольклором. Нартский эпос, устные предания и песенная традиция передаются из поколения в поколение.</p>
+                </div>
+
+                <!-- Галерея -->
+                <div class="people-section fade-in delay-5">
+                    <h3><i class="fas fa-images"></i> Культурное наследие</h3>
+
+                    <div class="people-gallery">
+                        <div class="people-gallery-item">
+                            <img src="/img/cultural/vovnushki.jpg" alt="Башенный комплекс Вовнушки" loading="lazy">
+                        </div>
+                        <div class="people-gallery-item">
+                            <img src="/img/cultural/erzi.jpg" alt="Башенный комплекс Эрзи" loading="lazy">
+                        </div>
+                        <div class="people-gallery-item">
+                            <img src="/img/cultural/targim.jpg" alt="Таргим" loading="lazy">
+                        </div>
+                        <div class="people-gallery-item">
+                            <img src="/img/cultural/egikal.jpg" alt="Эгикал" loading="lazy">
+                        </div>
+                        <div class="people-gallery-item">
+                            <img src="/img/cultural/tower-of-concord.jpg" alt="Башня Согласия" loading="lazy">
+                        </div>
+                        <div class="people-gallery-item">
+                            <img src="/img/cultural/khost.jpg" alt="Хост" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Язык -->
+                <div class="people-section fade-in delay-5">
+                    <h3><i class="fas fa-language"></i> Язык</h3>
+
+                    <p>Ингушский язык (<strong>ГIалгIай мотт</strong>) относится к нахской группе северокавказских языков. Ближайший родственный язык — чеченский. Ингушский язык обладает сложной грамматической системой с развитой падежной системой и эргативной конструкцией предложения.</p>
+
+                    <p>До XX века ингушский язык не имел письменности. Современная письменность основана на кириллице. Язык используется в быту, образовании и средствах массовой информации, однако нуждается в поддержке и развитии в условиях доминирования русского языка.</p>
+                </div>
+
+                <!-- Расселение -->
+                <div class="people-section fade-in delay-5">
+                    <h3><i class="fas fa-globe-europe"></i> Расселение</h3>
+
+                    <p>Основная часть ингушского населения проживает в Ингушетии (Галгайче). Значительные общины существуют также в других регионах Кавказа и в диаспоре.</p>
+
+                    <p>Историческая диаспора ингушей в Турции, Иордании, Сирии и других странах Ближнего Востока сформировалась в результате мухаджирства — вынужденного переселения в Османскую империю во второй половине XIX века.</p>
+
+                    <p>В последние десятилетия новые ингушские общины появились в странах Западной Европы, особенно во Франции, Бельгии, Германии и Австрии.</p>
+
+                    <a href="/map" class="btn btn-primary btn-icon">
+                        <i class="fas fa-map-marked-alt"></i> Интерактивная карта
+                    </a>
+                </div>
+
+                <div class="cta-section fade-in delay-5">
+                    <h3>Узнать больше</h3>
+                    <p>Узнайте о деятельности Комитета Ингушской Независимости по защите прав и культуры ингушского народа.</p>
+                    <a href="/about" class="btn btn-glow btn-lg">
+                        <i class="fas fa-info-circle"></i> О комитете
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <%- include('./partials/footer') %>
+    </div>
+
+    <script src="/js/animations.js" defer></script>
+</body>
+</html>

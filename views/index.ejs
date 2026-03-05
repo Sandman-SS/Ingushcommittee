@@ -71,6 +71,37 @@
             <a href="/contact" class="btn btn-secondary" aria-label="Перейти к форме контактов">Связаться с нами</a>
         </div>
     </section>
+
+    <% if (posts && posts.length > 0) { %>
+    <section class="home-news fade-in delay-5" aria-label="Последние новости">
+        <h2><i class="fas fa-newspaper" aria-hidden="true"></i> Последние новости</h2>
+        <div class="home-news-grid">
+            <% posts.forEach(function(post) { %>
+                <article class="home-news-card">
+                    <% if (post.media && post.media.length > 0) { %>
+                        <div class="home-news-image">
+                            <img src="<%= post.media[0] %>" alt="Фото новости" loading="lazy">
+                        </div>
+                    <% } %>
+                    <div class="home-news-body">
+                        <time class="home-news-date" datetime="<%= new Date(post.date).toISOString() %>">
+                            <i class="far fa-calendar-alt" aria-hidden="true"></i>
+                            <%= new Date(post.date).toLocaleDateString('ru-RU', { year: 'numeric', month: 'long', day: 'numeric' }) %>
+                        </time>
+                        <div class="home-news-text">
+                            <%- post.text ? post.text.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim().substring(0, 150) + (post.text.replace(/<[^>]+>/g, '').length > 150 ? '...' : '') : '' %>
+                        </div>
+                    </div>
+                </article>
+            <% }); %>
+        </div>
+        <div class="home-news-more">
+            <a href="/news" class="btn btn-primary btn-icon" aria-label="Перейти ко всем новостям">
+                <i class="fas fa-arrow-right" aria-hidden="true"></i> Все новости
+            </a>
+        </div>
+    </section>
+    <% } %>
 </main>
 
 <%- include('./partials/footer') %>
